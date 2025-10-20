@@ -1,0 +1,14 @@
+[
+  {
+    "id": 55860651,
+    "provider": "ICNEA_HOLIDAYSTENERIFE",
+    "reason": "far_future_dates_2025",
+    "quarantinedAt": "2025-01-10T12:00:00Z"
+  },
+  {
+    "id": 39323350,
+    "provider": "INTERHOME",
+    "reason": "far_future_dates_2026",
+    "quarantinedAt": "2025-10-10T12:00:00Z"
+  }
+]

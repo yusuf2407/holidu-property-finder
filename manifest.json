@@ -1,0 +1,51 @@
+{
+  "name": "Conqueror Testos",
+  "description": "Extension to easily test checkout page",
+  "version": "2.1.0",
+  "manifest_version": 3,
+  "background": {
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://api.holidu.com/*",
+    "https://kibana-search-7.holidu.cloud/*",
+    "http://localhost/*",
+    "https://localhost/*",
+    "https://*.holidu.com/*",
+    "https://*.holidu.de/*",
+    "https://*.holidu.fr/*",
+    "https://*.holidu.at/*",
+    "https://*.holidu.ch/*",
+    "https://*.holidu.es/*",
+    "https://*.holidu.co.uk/*",
+    "https://*.holidu.nl/*",
+    "https://*.holidu.dk/*",
+    "https://*.holidu.it/*",
+    "https://*.holidu.be/*",
+    "https://*.holidu.no/*",
+    "https://*.holidu.se/*",
+    "https://*.holidu.pl/*",
+    "https://*.holidu.pt/*",
+    "https://*.holidu.co.nz/*",
+    "https://*.holidu.com.au/*",
+    "https://*.holidu.ca/*",
+    "https://*.holidu.ie/*",
+    "https://*.holidu.com.br/*",
+    "https://*.holidu.com.mx/*",
+    "https://*.holidu.gr/*",
+    "https://holiduhost.com/*",
+    "https://bookiply.com/*",
+    "https://bookiply.es/*",
+    "https://ferienwohnungen-spanien.de/*",
+    "https://tui-ferienhaus.de/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "76": "favicon.png"
+    }
+  },
+  "icons": {
+    "76": "favicon.png"
+  }
+}

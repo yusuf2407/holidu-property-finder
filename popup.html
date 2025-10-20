@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <img src="Holidu_Horizontal Logo_White_RGB.png" alt="Holidu" class="logo-horizontal">
+      </div>
+      <div class="header-subtitle"><img src="house-icon.png" alt="🏡" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Find Your Dream Property <img src="houses-icon.png" alt="🏘️" style="width: 20px; height: 20px; vertical-align: middle; margin-left: 5px;"></div>
+    </div>
+
+    <!-- Warning Note -->
+    <div class="warning-note">
+      <img src="pngwing.com.png" alt="⚠" class="warning-icon-img"> Selecting multiple criteria might lead to no properties found
+    </div>
+
+    <!-- Toggle Info -->
+    <div class="toggle-info">
+      <span class="toggle-note">
+        <span class="static-toggle static-toggle-green">
+          <span class="static-toggle-slider"></span>
+        </span>
+        Green = Include
+      </span>
+      <span class="toggle-separator">|</span>
+      <span class="toggle-note">
+        <span class="static-toggle static-toggle-red">
+          <span class="static-toggle-slider"></span>
+        </span>
+        Red = Exclude
+      </span>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <div class="block block-border">
+          <div class="sectionTitle">Services</div>
+          <div class="checkbox-with-flag">
+          <div class="checkbox-group">
+          <input type="checkbox" id="hasIncludedCosts" name="hasIncludedCosts">
+          <label for="hasIncludedCosts"> Included</label>
+        </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasIncludedCosts_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+          <div class="checkbox-with-flag">
+        <div class="checkbox-group">
+          <input type="checkbox" id="hasMandatoryCosts" name="hasMandatoryCosts">
+          <label for="hasMandatoryCosts"> Mandatory</label>
+        </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasMandatoryCosts_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+          <div class="checkbox-with-flag">
+        <div class="checkbox-group">
+          <input type="checkbox" id="hasSelectableCosts" name="hasSelectableCosts">
+          <label for="hasSelectableCosts"> Selectable</label>
+        </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasSelectableCosts_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+          <div class="checkbox-with-flag">
+        <div class="checkbox-group">
+          <input type="checkbox" id="hasFreeSelectableCosts" name="hasFreeSelectableCosts">
+          <label for="hasFreeSelectableCosts"> Free Selectable</label>
+        </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasFreeSelectableCosts_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+          <div class="checkbox-with-flag">
+        <div class="checkbox-group">
+          <input type="checkbox" id="hasOnsiteCosts" name="hasOnsiteCosts">
+          <label for="hasOnsiteCosts"> On-site</label>
+        </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasOnsiteCosts_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+          <div class="checkbox-with-flag">
+        <div class="checkbox-group">
+          <input type="checkbox" id="hasMandatoryOnsiteCosts" name="hasMandatoryOnsiteCosts">
+          <label for="hasMandatoryOnsiteCosts"> Mandatory On-site</label>
+            </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasMandatoryOnsiteCosts_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+        </div>
+        
+        
+        </div>
+        <div class="block">
+          <div class="sectionTitle">Tourist tax</div>
+          <div class="checkbox-with-flag">
+          <div class="checkbox-group">
+            <input type="checkbox" id="hasTouristTax" name="hasTouristTax">
+            <label for="hasTouristTax"> Included in price</label>
+          </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasTouristTax_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+          <div class="checkbox-with-flag">
+          <div class="checkbox-group">
+          <input type="checkbox" id="hasTouristTaxOnSite" name="hasTouristTaxOnSite">
+          <label for="hasTouristTaxOnSite"> On-site</label>
+        </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasTouristTaxOnSite_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+        </div>
+        <div class="block">
+          <div class="sectionTitle">Deposit</div>
+          <div class="checkbox-with-flag">
+            <div class="checkbox-group">
+          <input type="checkbox" id="hasDeposit" name="hasDeposit">
+          <label for="hasDeposit"> Included in price</label>
+        </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasDeposit_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+          <div class="checkbox-with-flag">
+            <div class="checkbox-group">
+            <input type="checkbox" id="hasDepositOnsite" name="hasDepositOnsite">
+            <label for="hasDepositOnsite"> On-site</label>
+          </div>
+            <button type="button" class="flag-toggle positive disabled" id="hasDepositOnsite_flag" data-state="positive">
+              <span class="toggle-slider"></span>
+            </button>
+          </div>
+        </div>
+
+      </div> 
+      <div class="column">
+        <div class="block block-border">
+          <div class="sectionTitle">Provider</div>
+          <input type="text" id="provider" name="provider" placeholder="Type provider (e.g. TOMAS, FERATEL)" list="providers"/>
+          <datalist id="providers">
+            <option value="AGENZIA_MARINA"></option>
+            <option value="ALEGRIA_REAL_ESTATE"></option>
+            <option value="ALGARVE_LIFESTYLE"></option>
+            <option value="ANYB_TEST"></option>
+            <option value="APARTUP"></option>
+            <option value="ARKI_FLAINEIMMOBILIE"></option>
+            <option value="ARKI_IMMOBILIERE_GIO"></option>
+            <option value="ARKI_OFFICEIMMO"></option>
+            <option value="ARKI_TIGNESIMMOBILIE"></option>
+            <option value="AVANTIO_ALGARVEVAC"></option>
+            <option value="AVANTIO_ALPESLOCAT"></option>
+            <option value="AVANTIO_ALQUILOSA"></option>
+            <option value="AVANTIO_ANACASAIMMOB"></option>
+            <option value="AVANTIO_ARGSRL"></option>
+            <option value="AVANTIO_BEACHFRONT"></option>
+            <option value="AVANTIO_BESTOFCROA"></option>
+            <option value="AVANTIO_BLUELINEBO"></option>
+            <option value="AVANTIO_BOOK247ONL"></option>
+            <option value="AVANTIO_CARLOSFERIEN"></option>
+            <option value="AVANTIO_CEIGROUP"></option>
+            <option value="AVANTIO_CGNERJAREN"></option>
+            <option value="AVANTIO_CLUBVILLAM"></option>
+            <option value="AVANTIO_COASTALVILLA"></option>
+            <option value="AVANTIO_COSTA_DORADA"></option>
+            <option value="AVANTIO_COUAROGE"></option>
+            <option value="AVANTIO_DOFCOPINYASL"></option>
+            <option value="AVANTIO_DUQUESAEST"></option>
+            <option value="AVANTIO_EASYVILLAS"></option>
+            <option value="AVANTIO_EMMASVACA"></option>
+            <option value="AVANTIO_EUROAPARTLAF"></option>
+            <option value="AVANTIO_FEELSLIKEH"></option>
+            <option value="AVANTIO_FINCAHIT"></option>
+            <option value="AVANTIO_FLATGUESTH"></option>
+            <option value="AVANTIO_FUERTEGROU"></option>
+            <option value="AVANTIO_GARDA_DOMUS"></option>
+            <option value="AVANTIO_GARDAFEWOS"></option>
+            <option value="AVANTIO_GESPAMA"></option>
+            <option value="AVANTIO_GESTIN"></option>
+            <option value="AVANTIO_HOME2BOOK"></option>
+            <option value="AVANTIO_HOMEHOLIDA"></option>
+            <option value="AVANTIO_HOMING"></option>
+            <option value="AVANTIO_HOOMY"></option>
+            <option value="AVANTIO_HOSTICASA"></option>
+            <option value="AVANTIO_IDEALPROPE"></option>
+            <option value="AVANTIO_IMMOBARNEDA"></option>
+            <option value="AVANTIO_K_THREE"></option>
+            <option value="AVANTIO_MALLORCA_HOL"></option>
+            <option value="AVANTIO_MAREMMALIN"></option>
+            <option value="AVANTIO_NATALIAMORAR"></option>
+            <option value="AVANTIO_OREOTRAVEL"></option>
+            <option value="AVANTIO_PLUSHOLIDAYS"></option>
+            <option value="AVANTIO_PORTVIL"></option>
+            <option value="AVANTIO_QTUR"></option>
+            <option value="AVANTIO_REBOMAHOLI"></option>
+            <option value="AVANTIO_RESORT_CHOICE"></option>
+            <option value="AVANTIO_ROOMSERVICE_MARBELLA"></option>
+            <option value="AVANTIO_SERVIPLAYA"></option>
+            <option value="AVANTIO_SPAINVILLA"></option>
+            <option value="AVANTIO_SUNSETVILLAS"></option>
+            <option value="AVANTIO_TOPKANAREN"></option>
+            <option value="AVANTIO_UNIVERSALH"></option>
+            <option value="AVANTIO_VILLASGUZM"></option>
+            <option value="AVANTIO_WONDERFUL"></option>
+            <option value="AVANTIO_YOURHOUSEGRO"></option>
+            <option value="AVANTIO_ZADARVILLA"></option>
+            <option value="AVANTIO_ZAPINVEST_HO"></option>
+            <option value="BEERENT_ADSDOO"></option>
+            <option value="BEERENT_EUROTOURS"></option>
+            <option value="BEERENT_MYWAYCATIO"></option>
+            <option value="BEERENT_ORGONLUXUR"></option>
+            <option value="BEERENT_TRAVELIN"></option>
+            <option value="BEVITAL"></option>
+            <option value="BF_EXCLUSIVE"></option>
+            <option value="BMY_GUEST"></option>
+            <option value="BOOKIPLY"></option>
+            <option value="BOOKINGS_TEAM_TEST"></option>
+            <option value="CANOVAS"></option>
+            <option value="CASASOL"></option>
+            <option value="CASITAS_CANARIAS"></option>
+            <option value="COSTA_CALPE"></option>
+            <option value="CUBO_HOLIDAY_HOMES"></option>
+            <option value="DANCENTER"></option>
+            <option value="EASY_RESERVE"></option>
+            <option value="ECO_IBIZA"></option>
+            <option value="EHR"></option>
+            <option value="EURO_VILLAS_SELECTION"></option>
+            <option value="FERATEL_ACHENSEETO"></option>
+            <option value="FINTECH_TEST_PROVIDE"></option>
+            <option value="FERATEL_BRANDNERT"></option>
+            <option value="FERATEL_DEFEREGGEN"></option>
+            <option value="FERATEL_ELLMAU"></option>
+            <option value="FERATEL_FLENSBURG"></option>
+            <option value="FERATEL_GASTLANDSCHAFTEN"></option>
+            <option value="FERATEL_GDF1"></option>
+            <option value="FERATEL_GDF46"></option>
+            <option value="FERATEL_GDFHALSACE"></option>
+            <option value="FERATEL_GDFHERAULT"></option>
+            <option value="FERATEL_HINDELANG"></option>
+            <option value="FERATEL_HOCHKOENIG"></option>
+            <option value="FERATEL_HOCHPUSTER"></option>
+            <option value="FERATEL_HOHESALVE"></option>
+            <option value="FERATEL_HOHETAUERN"></option>
+            <option value="FERATEL_IMMENSTADT"></option>
+            <option value="FERATEL_ISNY"></option>
+            <option value="FERATEL_KAISERWINK"></option>
+            <option value="FERATEL_KLOPEIN"></option>
+            <option value="FERATEL_LHG"></option>
+            <option value="FERATEL_NORDERNEY"></option>
+            <option value="FERATEL_OBERSTAUF"></option>
+            <option value="FERATEL_OSNABRUECK"></option>
+            <option value="FERATEL_PIESENDORF"></option>
+            <option value="FERATEL_RETTENBERG"></option>
+            <option value="FERATEL_SAALACHTAL"></option>
+            <option value="FERATEL_SCHEFFAU"></option>
+            <option value="FERATEL_SEEG"></option>
+            <option value="FERATEL_STPETERORD"></option>
+            <option value="FERATEL_STUBAITAL"></option>
+            <option value="FERATEL_UMHAUSEN"></option>
+            <option value="FERATEL_VILLACH"></option>
+            <option value="FORAVILA_RENTALS"></option>
+            <option value="FROSCH_FERIENHAUS"></option>
+            <option value="GECO"></option>
+            <option value="HAPPY_HOLIDAY_HOMES"></option>
+            <option value="HOMEREZ"></option>
+            <option value="HRS_EB"></option>
+            <option value="HRS"></option>
+            <option value="ICNEA_APCOSTAS"></option>
+            <option value="ICNEA_CASAANDALU"></option>
+            <option value="ICNEA_CASASDALMEDINA"></option>
+            <option value="ICNEA_COSTADAURADAAP"></option>
+            <option value="ICNEA_DONBNB"></option>
+            <option value="ICNEA_FINCASMAJO"></option>
+            <option value="ICNEA_HOLIRENT"></option>
+            <option value="ICNEA_HOMEABOUT"></option>
+            <option value="ICNEA_IMMOROSES"></option>
+            <option value="ICNEA_LIGHTBOOKI"></option>
+            <option value="ICNEA_MOLLHOUSE"></option>
+            <option value="ICNEA_MOONTENERI"></option>
+            <option value="ICNEA_PARADISERENTBA"></option>
+            <option value="ICNEA_RTR"></option>
+            <option value="ICNEA_SOLHOME"></option>
+            <option value="ICNEA_SPAINRENTALS"></option>
+            <option value="ICNEA_SUNPROPERT"></option>
+            <option value="ICNEA_SUNSETHOLIDAYR"></option>
+            <option value="INSAGRES"></option>
+            <option value="INTERCHALET"></option>
+            <option value="INTERHOME"></option>
+            <option value="IRENT_AGUILARENT"></option>
+            <option value="IRENT_COSTAANDALUCIA"></option>
+            <option value="IRENT_COSTABLANC"></option>
+            <option value="IRENT_COSTACARPEDIEM"></option>
+            <option value="IRENT_MAGICJAVEA"></option>
+            <option value="IRENT_QUALITYREN"></option>
+            <option value="IRENT_SOLIDAYS"></option>
+            <option value="IRENT_SOUTHFRANC"></option>
+            <option value="IRENT_VILLAALTEA"></option>
+            <option value="ISLA_TOURS"></option>
+            <option value="ITEA_GDFARDECHE"></option>
+            <option value="ITEA_GDFARMOR"></option>
+            <option value="ITEA_GITESDEFRA"></option>
+            <option value="ITEA_GITESDEFRANCERE"></option>
+            <option value="ITEA_GTESDEFRANCEARD"></option>
+            <option value="ITEA_GTESDEFRANCECOR"></option>
+            <option value="KB_BOOKINGPRATONEVOS"></option>
+            <option value="KB_CLEANBNBSPA"></option>
+            <option value="KB_HISPACES"></option>
+            <option value="KB_IHOME"></option>
+            <option value="KB_ROMAC"></option>
+            <option value="KIGO_BLUMENRIVI"></option>
+            <option value="KIGO_BUENA_ONDA"></option>
+            <option value="KIGO_CATALUNYA_CASAS"></option>
+            <option value="KIGO_HOLIDAYS4U"></option>
+            <option value="KIGO_LOGOSSERVI"></option>
+            <option value="KIGO_MJOYCONCI"></option>
+            <option value="KIGO_RESIDENZAZACCOL"></option>
+            <option value="KIGO_WORLDWIDEAPARTM"></option>
+            <option value="LAKE_COMO"></option>
+            <option value="LEISUREGROUP"></option>
+            <option value="MAGE_AGENZIASOL"></option>
+            <option value="MAGE_AGENZIATUR"></option>
+            <option value="MAGE_PRENOTA_ELBA"></option>
+            <option value="MALLORCA_CHARME"></option>
+            <option value="MALLORCA_VILLA_SELECTION"></option>
+            <option value="MO_RENTALS_DIRECT"></option>
+            <option value="MONTAGNE_VACANCES"></option>
+            <option value="N2R_CALAFATHOL"></option>
+            <option value="N2R_COMPANYTUR"></option>
+            <option value="N2R_DIAMONDHOU"></option>
+            <option value="N2R_DIFFERENTFLATS"></option>
+            <option value="N2R_FINCASASNE"></option>
+            <option value="N2R_GLOBALIMMO"></option>
+            <option value="N2R_HOMESELECTINTERN"></option>
+            <option value="NEXTPAX_DIRECTBOOK"></option>
+            <option value="NEXTPAX_LANDAL"></option>
+            <option value="NOVASOL"></option>
+            <option value="OCTO_RENTALMAR"></option>
+            <option value="PRIVATE_HOLIDAY"></option>
+            <option value="QEN_EUROPARCS"></option>
+            <option value="QEN_FRANCECOMFORTVAK"></option>
+            <option value="QEN_TOPPARKEN"></option>
+            <option value="RU_AGENCECOCO"></option>
+            <option value="RU_AGENCIAAPA"></option>
+            <option value="RU_AGNITRAVEL"></option>
+            <option value="RU_AIRBETTER"></option>
+            <option value="RU_DADOVILLAS"></option>
+            <option value="RU_HOLIDAYFIN"></option>
+            <option value="RU_HOLIDAYSME"></option>
+            <option value="RU_HOLIHOUSE"></option>
+            <option value="RU_INMO_TWENTYTWO"></option>
+            <option value="RU_ORTIGIAPARTAMENTS"></option>
+            <option value="RU_PEMBROKESH"></option>
+            <option value="RU_RENTALLAKECOMOSRL"></option>
+            <option value="RU_RURALIDAYS"></option>
+            <option value="RU_SOLSETPROPERTIES"></option>
+            <option value="RU_SUFFOLKSEC"></option>
+            <option value="RU_WALESCOTTA"></option>
+            <option value="SC_DISCOVERSC"></option>
+            <option value="SC_LOVECOMO"></option>
+            <option value="SEARCHTESTPROVIDER"></option>
+            <option value="SECRA"></option>
+            <option value="SEJOUR_A_BRIVE"></option>
+            <option value="TITRAVEL"></option>
+            <option value="TOKEET_TESTTOKEET"></option>
+            <option value="UDILOH_API_PCI"></option>
+            <option value="UDILOH_API_PROV"></option>
+            <option value="TOMAS_BAUERNHOFURLAU"></option>
+            <option value="TOMAS_BUESUM"></option>
+            <option value="TOMAS_DITHMARSCHEN"></option>
+            <option value="TOMAS_ENGADIN_WL"></option>
+            <option value="TOMAS_GASTGEBERS"></option>
+            <option value="TOMAS_HUSUM"></option>
+            <option value="TOMAS_IRS18"></option>
+            <option value="TOMAS_LOHOSPO"></option>
+            <option value="TOMAS_NORDFRIESLAND"></option>
+            <option value="TOMAS_OBS_AT"></option>
+            <option value="TOMAS_OBS"></option>
+            <option value="TOMAS_OSTSEEFJORD"></option>
+            <option value="TOMAS_TTG_RDL"></option>
+            <option value="TOMAS_TTG_SLF"></option>
+            <option value="TRAVELSTAYTION"></option>
+            <option value="TRIDENT"></option>
+            <option value="TUI"></option>
+            <option value="VACASA_BCN"></option>
+            <option value="VILLAFINCA"></option>
+            <option value="VILLAFORYOU"></option>
+            <option value="VOFFICE_ALCA"></option>
+            <option value="VOFFICE_AMRUM"></option>
+            <option value="VOFFICE_APPARTEMEN"></option>
+            <option value="VOFFICE_CSIMMOBILI"></option>
+            <option value="VOFFICE_DAHME"></option>
+            <option value="VOFFICE_DAHME24"></option>
+            <option value="VOFFICE_FERIENANDE"></option>
+            <option value="VOFFICE_FEWO1846"></option>
+            <option value="VOFFICE_FOERDEFEWO"></option>
+            <option value="VOFFICE_GROEMITZ"></option>
+            <option value="VOFFICE_KELLENHUSEN"></option>
+            <option value="VOFFICE_MAJAAPPART"></option>
+            <option value="VOFFICE_MEERFUN"></option>
+            <option value="VOFFICE_NORDICGMBH"></option>
+            <option value="VOFFICE_PARADIESRG"></option>
+            <option value="VOFFICE_POELERAPPA"></option>
+            <option value="VOFFICE_RENTALLORCA"></option>
+            <option value="VOFFICE_SCHARBEUTZ"></option>
+            <option value="VOFFICE_STRANDBLICK"></option>
+            <option value="VOFFICE_SYLTERGMBH"></option>
+            <option value="VOFFICE_USEDOM24"></option>
+            <option value="VOFFICE_VERMIETUNGSB"></option>
+            <option value="VOFFICE_VOFFICE"></option>
+            <option value="XSIGNS_APPVERMITT"></option>
+            <option value="XSIGNS_BALUOSTSEEURL"></option>
+            <option value="XSIGNS_BIANCAMULL"></option>
+            <option value="XSIGNS_CONCILREALEST"></option>
+            <option value="XSIGNS_FEE_VOM_SEE"></option>
+            <option value="XSIGNS_FERIENINDU"></option>
+            <option value="XSIGNS_FERIENSERVICE"></option>
+            <option value="XSIGNS_LABREVA"></option>
+            <option value="XSIGNS_LEIVEIMMOBILI"></option>
+            <option value="XSIGNS_MEERZEITFU"></option>
+            <option value="XSIGNS_PETERS_FEWO"></option>
+            <option value="XSIGNS_RUPPRECHT"></option>
+            <option value="XSIGNS_SYLT_APPARTEMENTS"></option>
+            <option value="XSIGNS_VERMIETUNGSAG"></option>
+            <option value="XSIGNS_VINETAAPPARTE_DLBE"></option>
+            <option value="YOUR_RENTALS"></option>
+            <option value="ZAPINVEST"></option>
+          </datalist>
+        </div>
+        <div class="block">
+          <div class="sectionTitle">Multi-units</div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="isMultiUnit" name="isMultiUnit">
+            <label for="isMultiUnit">Multi-units only</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="supportsParentUnitStructure" name="supportsParentUnitStructure">
+            <label for="supportsParentUnitStructure">Parent structure only</label>
+          </div>
+        </div>
+        <div class="block">
+          <div class="sectionTitle">Payment type</div>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="isTestProperty" name="isTestProperty">
+            <label for="isTestProperty">Test Properties Only</label>
+          </div>
+
+          <div class="paymentGroup">
+            <div class="radio-item">
+              <input type="radio" id="paymentType1" name="paymentType" value="ADYEN">
+              <label for="paymentType1">ADYEN</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="paymentType2" name="paymentType" value="PCI CC">
+              <label for="paymentType2">PCI CC</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="paymentType3" name="paymentType" value="PCI Multiple">
+              <label for="paymentType3">PCI Multiple</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="paymentType4" name="paymentType" value="TOMAS">
+              <label for="paymentType4">TOMAS</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="paymentType5" name="paymentType" value="On-Request">
+              <label for="paymentType5">On-Request</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="paymentType6" name="paymentType" value="Selectable">
+              <label for="paymentType6">Selectable</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="paymentType7" name="paymentType" value="Non-Selectable">
+              <label for="paymentType7">Non-Selectable</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="paymentType8" name="paymentType" value="Single">
+              <label for="paymentType8">Single</label>
+            </div>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="hasFreeCancellation" name="hasFreeCancellation">
+              <label for="hasFreeCancellation"> Free Cancellation</label>
+          </div>
+
+          <div style="margin-top: 8px;">
+            <label for="cancellationPolicy" style="font-size: 10px; color: #666; display: block; margin-bottom: 3px;">Cancellation Policy:</label>
+            <select id="cancellationPolicy" name="cancellationPolicy" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 11px; background: white;">
+              <option value="">Any Policy</option>
+              <option value="FLEXIBLE">Flexible</option>
+              <option value="MODERATE">Moderate</option>
+              <option value="MODERATE_5D">Moderate (5 days)</option>
+              <option value="FIRM">Firm</option>
+              <option value="FIRM_30D_7D">Firm (30/7 days)</option>
+              <option value="STRICT">Strict</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <div class="block block-border-top">
+          <div class="sectionTitle">Domain</div>
+        <input type="text" name="domain" id="domain" list="domainList" placeholder="Uses current domain if empty">
+        <datalist id="domainList">
+          <option value="current">Current domain</option>
+          <!-- Main Holidu Domains -->
+          <option value="www.holidu.de">holidu.de (ID: 1)</option>
+          <option value="www.holidu.com">holidu.com (ID: 2)</option>
+          <option value="www.holidu.fr">holidu.fr (ID: 261)</option>
+          <option value="www.holidu.at">holidu.at (ID: 341)</option>
+          <option value="www.holidu.ch">holidu.ch (ID: 342)</option>
+          <option value="www.holidu.es">holidu.es (ID: 361)</option>
+          <option value="www.holidu.co.uk">holidu.co.uk (ID: 362)</option>
+          <option value="www.holidu.nl">holidu.nl (ID: 401)</option>
+          <option value="www.holidu.dk">holidu.dk (ID: 421)</option>
+          <option value="www.holidu.it">holidu.it (ID: 621)</option>
+          <option value="www.holidu.be">holidu.be (ID: 854)</option>
+          <option value="www.holidu.no">holidu.no (ID: 898)</option>
+          <option value="www.holidu.se">holidu.se (ID: 899)</option>
+          <option value="www.holidu.pl">holidu.pl (ID: 900)</option>
+          <option value="www.holidu.pt">holidu.pt (ID: 1158)</option>
+          <option value="www.holidu.co.nz">holidu.co.nz (ID: 1220)</option>
+          <option value="www.holidu.com.au">holidu.com.au (ID: 1221)</option>
+          <option value="www.holidu.ca">holidu.ca (ID: 1240)</option>
+          <option value="www.holidu.ie">holidu.ie (ID: 1241)</option>
+          <option value="www.holidu.com.br">holidu.com.br (ID: 1242)</option>
+          <option value="www.holidu.com.mx">holidu.com.mx (ID: 1462)</option>
+          <option value="www.holidu.gr">holidu.gr (ID: 2519)</option>
+          <!-- Pirate Sites -->
+          <option value="urlaubspiraten.holidu.com">urlaubspiraten.holidu.com (ID: 2399)</option>
+          <option value="urlaubspiraten-at.holidu.com">urlaubspiraten-at.holidu.com (ID: 2400)</option>
+          <option value="holidaypirates.holidu.com">holidaypirates.holidu.com (ID: 2419)</option>
+          <option value="voyagespirates.holidu.com">voyagespirates.holidu.com (ID: 2439)</option>
+          <option value="wakacyjnipiraci.holidu.com">wakacyjnipiraci.holidu.com (ID: 2440)</option>
+          <option value="piratinviaggio.holidu.com">piratinviaggio.holidu.com (ID: 2459)</option>
+          <option value="vakantiepiraten.holidu.com">vakantiepiraten.holidu.com (ID: 2460)</option>
+          <option value="ferienpiraten.holidu.com">ferienpiraten.holidu.com (ID: 2461)</option>
+          <option value="viajerospiratas.holidu.com">viajerospiratas.holidu.com (ID: 2479)</option>
+          <option value="travelpirates.holidu.com">travelpirates.holidu.com (ID: 2480)</option>
+          <!-- Special Domains -->
+          <option value="holiduhost.com">holiduhost.com (ID: 3520)</option>
+          <option value="bookiply.com">bookiply.com (ID: 701)</option>
+          <option value="bookiply.es">bookiply.es (ID: 1138)</option>
+          <option value="bookiply.de">bookiply.de (ID: 1899)</option>
+          <option value="bookiply.fr">bookiply.fr (ID: 1839)</option>
+          <option value="bookiply.it">bookiply.it (ID: 1859)</option>
+          <option value="bookiply.nl">bookiply.nl (ID: 1879)</option>
+          <option value="bookiply.pt">bookiply.pt (ID: 1919)</option>
+          <option value="bookiply.gr">bookiply.gr (ID: 2539)</option>
+          <option value="hundredrooms.com">hundredrooms.com (ID: 1679)</option>
+          <option value="hundredrooms.net">hundredrooms.net (ID: 1699)</option>
+          <option value="hundredrooms.co.uk">hundredrooms.co.uk (ID: 1700)</option>
+          <option value="hundredrooms.fr">hundredrooms.fr (ID: 1701)</option>
+          <option value="hundredrooms.com.mx">hundredrooms.com.mx (ID: 1702)</option>
+          <option value="hundredrooms.it">hundredrooms.it (ID: 1703)</option>
+          <option value="hundredrooms.de">hundredrooms.de (ID: 1719)</option>
+          <!-- Tourism Sites -->
+          <option value="ferienwohnungen.de">ferienwohnungen.de (ID: 3301)</option>
+          <option value="ferienwohnungen.at">ferienwohnungen.at (ID: 3370)</option>
+          <option value="vakantiewoningen.nl">vakantiewoningen.nl (ID: 3562)</option>
+          <option value="vakantiehuizendirect.nl">vakantiehuizendirect.nl (ID: 1819)</option>
+          <option value="nordseetourismus.de">nordseetourismus.de (ID: 3000)</option>
+          <option value="engadin.com">engadin.com (ID: 3360)</option>
+          <option value="toploc.com">toploc.com (ID: 3350)</option>
+          <option value="clubrural.com">clubrural.com (ID: 3381)</option>
+          <option value="portaholiday.es">portaholiday.es (ID: 2199)</option>
+          <option value="portaholiday.de">portaholiday.de (ID: 2219)</option>
+          <option value="portaholiday.com">portaholiday.com (ID: 2239)</option>
+          <option value="spain-holiday.com">spain-holiday.com (ID: 2259)</option>
+          <option value="vakantiehuizenspanje.nl">vakantiehuizenspanje.nl (ID: 2279)</option>
+          <option value="ferienwohnungen-spanien.de">ferienwohnungen-spanien.de (ID: 2360)</option>
+          <option value="alquileres-vacacionales.es">alquileres-vacacionales.es (ID: 3411)</option>
+          <option value="fincamallorca.de">fincamallorca.de (ID: 3620)</option>
+          <option value="farmtravel.com">farmtravel.com (ID: 4711)</option>
+          <option value="gites.fr">gites.fr (ID: 4900)</option>
+          <option value="chambres-hotes.fr">chambres-hotes.fr (ID: 4910)</option>
+          <option value="case-vacanze.it">case-vacanze.it (ID: 5080)</option>
+          <option value="holidaylets.co.uk">holidaylets.co.uk (ID: 5270)</option>
+          <option value="holiday-villas.co.uk">holiday-villas.co.uk (ID: 5090)</option>
+          <option value="bauernhof-urlaub.de">bauernhof-urlaub.de (ID: 5280)</option>
+          <!-- Regional (Selected) -->
+          <option value="holidu.bodensee.de">holidu.bodensee.de (ID: 1979)</option>
+          <option value="holidu.gardasee.de">holidu.gardasee.de (ID: 2179)</option>
+          <option value="sauerland.com">sauerland.com (ID: 3601)</option>
+          <option value="allgaeu.de">allgaeu.de (ID: 3442)</option>
+          <option value="bayerischer-wald.holidu.de">bayerischer-wald.holidu.de (ID: 3720)</option>
+          <!-- External API -->
+          <option value="external-api.holidu.com">external-api.holidu.com (ID: 2599)</option>
+          <option value="external-api.holidu.de">external-api.holidu.de (ID: 2559)</option>
+          <option value="external-api.holidu.co.uk">external-api.holidu.co.uk (ID: 2619)</option>
+          <!-- Stage/Test -->
+          <option value="stage.holidu.cloud">stage.holidu.cloud (ID: 1799)</option>
+          <option value="playground.holidu.de">playground.holidu.de (ID: 3500)</option>
+        </datalist>
+        </div>
+      </div>
+      <div class="column">
+        <div class="block block-border-top">
+          <div class="sectionTitle">Apartment ID</div>
+          <input type="text" id="apartmentId" name="apartmentId" placeholder="Type apartment id (optional)"/>
+       </div>
+      </div>
+    </div>
+
+    <!-- Discounts Section -->
+    <div class="row">
+      <div class="column" style="flex: 100%;">
+        <div class="block block-border-top">
+          <div class="sectionTitle">
+            Discounts Available
+            <span class="info-icon" data-tooltip="Note: Properties have these discounts, but they will only appear on the website when their specific criteria are met (e.g., booking dates, stay duration, advance booking time, etc.)">i</span>
+          </div>
+          
+          <!-- 2-Column Layout for Discounts -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <!-- Column 1 -->
+            <div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasNonRefundableDiscount" name="hasNonRefundableDiscount">
+                <label for="hasNonRefundableDiscount">Non-refundable / Multi-rates</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasEarlyBirdDiscount" name="hasEarlyBirdDiscount">
+                <label for="hasEarlyBirdDiscount">Early Bird Discount</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasEarlyBirdNonBookiply" name="hasEarlyBirdNonBookiply">
+                <label for="hasEarlyBirdNonBookiply">Early Bird (Non-Holidu Home)</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasLastMinuteDiscount" name="hasLastMinuteDiscount">
+                <label for="hasLastMinuteDiscount">Last Minute Discount</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasLastMinuteNonBookiply" name="hasLastMinuteNonBookiply">
+                <label for="hasLastMinuteNonBookiply">Last Minute (Non-Holidu Home)</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasWeeklyDiscount" name="hasWeeklyDiscount">
+                <label for="hasWeeklyDiscount">Weekly / Long stay</label>
+              </div>
+            </div>
+            
+            <!-- Column 2 -->
+            <div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasMobileDiscount" name="hasMobileDiscount">
+                <label for="hasMobileDiscount">Mobile Discount</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasNewListingDiscount" name="hasNewListingDiscount">
+                <label for="hasNewListingDiscount">New Listing Discount</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasSpecialDealDiscount" name="hasSpecialDealDiscount">
+                <label for="hasSpecialDealDiscount">Special Discount (2 or more)</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasLoyaltyDiscount" name="hasLoyaltyDiscount">
+                <label for="hasLoyaltyDiscount">Loyalty Discount</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasOfferDiscount" name="hasOfferDiscount">
+                <label for="hasOfferDiscount">Offer</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasProviderDifferenceDiscount" name="hasProviderDifferenceDiscount">
+                <label for="hasProviderDifferenceDiscount">Provider Difference</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+        <!-- Meal Options Section -->
+        <div class="row">
+          <div class="column" style="flex: 100%;">
+            <div class="block block-border-top">
+              <div class="sectionTitle">Meal Options</div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasBreakfast" name="hasBreakfast">
+                <label for="hasBreakfast">Breakfast Included</label>
+              </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="hasHalfBoard" name="hasHalfBoard">
+              <label for="hasHalfBoard">Half Board</label>
+            </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="hasFullBoard" name="hasFullBoard">
+                <label for="hasFullBoard">Full Board <span class="note-text">(No properties yet)</span></label>
+              </div>
+            </div>
+      </div>
+      </div>
+
+    <!-- ES Query Logs Button (after Meal Options) -->
+    <div class="row">
+      <div class="column" style="flex: 100%;">
+        <div class="block" style="text-align: center; padding: 5px 10px;">
+          <button id="viewQueryLogs" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 500; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 100%; max-width: 300px; text-align: center;">View ES Query Logs</button>
+        </div>
+      </div>
+    </div>
+    <!-- Spacer to prevent content from hiding behind sticky footer -->
+    <div style="height: 60px;"></div>
+
+    <!-- Sticky Footer with Page Selection and CTA -->
+    <div class="sticky-footer">
+      <div class="page-selection-inline">
+        <span class="page-label">Page:</span>
+        <div class="radio-item">
+          <input type="radio" id="page1" name="page" value="list">
+          <label for="page1">List</label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" id="page2" name="page" value="details" checked>
+          <label for="page2">Details</label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" id="page3" name="page" value="checkout">
+          <label for="page3">Checkout</label>
+        </div>
+    </div>
+      <input type="submit" id='btnApartmentId' value="Find & go to apartment" />
+    </div>
+  
+    
+    
+
+
+    <script type="text/javascript" src="esClient.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+    <script type="text/javascript" src="search.js"></script>
+    <script type="text/javascript" src="prepare.js"></script>
+    <script type="text/javascript" src="holiduHelper.js"></script>
+  </body>
+</html>
+

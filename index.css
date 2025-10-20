@@ -1,0 +1,758 @@
+button {
+  height: 30px;
+  width: 100px;
+  margin: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+body{
+  width: 500px;
+  height: 680px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0 6px 100px 6px;
+  overflow-y: auto;
+}
+
+.header {
+  background: linear-gradient(135deg, #00809D 0%, #006b85 100%);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-horizontal {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-subtitle {
+  font-size: 11px;
+  opacity: 0.85;
+  font-weight: 400;
+}
+
+/* Toggle Info Note */
+.toggle-info {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin: 0 6px 6px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 11px;
+  color: #555;
+}
+
+/* Warning Note */
+.warning-note {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 6px 6px 6px 6px;
+  text-align: center;
+  font-size: 10px;
+  color: #856404;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.warning-icon {
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warning-icon-img {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.toggle-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.toggle-separator {
+  color: #ccc;
+  font-weight: 300;
+}
+
+/* Static Toggle Switches (for info display only) */
+.static-toggle {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 12px;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.static-toggle-green {
+  background-color: #28a745;
+}
+
+.static-toggle-red {
+  background-color: #dc3545;
+}
+
+.static-toggle-slider {
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.static-toggle-red .static-toggle-slider {
+  transform: translateX(12px);
+}
+
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 13px;
+  color: #333;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 2px;
+  gap: 6px;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.column {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tricolumn {
+  flex: 33%;
+  padding: 0 6px;
+}
+
+.block {
+  padding: 5px 10px 6px 10px;
+  background-color: white;
+  border-radius: 6px;
+  margin-bottom: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  overflow: visible;
+}
+
+.block-border {
+  border-bottom: none;
+}
+
+.block-border-top {
+  border-top: none;
+  padding-top: 5px;
+  margin-top: 0;
+}
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  padding: 0 0 2px 0;
+  color: #00809D;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-icon {
+  cursor: help;
+  font-size: 9px;
+  color: #00809D;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: 4px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.2px solid #00809D;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: lowercase;
+}
+
+.info-icon:hover {
+  opacity: 1;
+  background: rgba(0, 128, 157, 0.1);
+}
+
+/* Custom instant tooltip using CSS */
+.info-icon::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(50, 50, 50, 0.95);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: normal;
+  white-space: normal;
+  width: 260px;
+  text-align: left;
+  line-height: 1.5;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  text-transform: none;
+}
+
+.info-icon::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(50, 50, 50, 0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1001;
+}
+
+.info-icon:hover::before,
+.info-icon:hover::after {
+  opacity: 1;
+}
+
+.checkbox-group{
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-group:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-group label {
+  font-size: 12px;
+  cursor: pointer;
+  flex: 1;
+  user-select: none;
+}
+
+/* Hover effect - petrol color */
+.checkbox-group:hover {
+  background-color: rgba(0, 128, 157, 0.06);
+  border-color: rgba(0, 128, 157, 0.15);
+}
+
+/* Highlight when checkbox is checked - green */
+.checkbox-group:has(input[type="checkbox"]:checked) {
+  background-color: rgba(40, 167, 69, 0.08);
+  border-color: rgba(40, 167, 69, 0.2);
+}
+
+.note-text {
+  font-size: 10px;
+  color: #999;
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.checkbox-with-flag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.checkbox-with-flag:last-child {
+  margin-bottom: 0;
+}
+
+/* Hover effect - petrol color */
+.checkbox-with-flag:hover {
+  background-color: rgba(0, 128, 157, 0.06);
+  border-color: rgba(0, 128, 157, 0.15);
+}
+
+/* Highlight when checkbox is checked - green */
+.checkbox-with-flag:has(input[type="checkbox"]:checked) {
+  background-color: rgba(40, 167, 69, 0.08);
+  border-color: rgba(40, 167, 69, 0.2);
+}
+
+/* Prevent double highlight on inner elements */
+.checkbox-with-flag .checkbox-group {
+  padding: 0;
+  border: none;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.checkbox-with-flag .checkbox-group:hover {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Ensure checked state doesn't highlight inner checkbox-group */
+.checkbox-with-flag:has(input[type="checkbox"]:checked) .checkbox-group {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Re-enable clicking on actual checkbox input */
+.checkbox-with-flag input[type="checkbox"] {
+  pointer-events: auto;
+}
+
+/* Toggle Switch Styles */
+.flag-toggle {
+  position: relative;
+  width: 26px;
+  height: 13px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+.flag-toggle input {
+  display: none;
+}
+
+.flag-toggle .toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #28a745;
+  border-radius: 13px;
+  transition: all 0.3s ease;
+}
+
+.flag-toggle .toggle-slider::before {
+  content: "";
+  position: absolute;
+  height: 9px;
+  width: 9px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.flag-toggle.negative .toggle-slider {
+  background-color: #dc3545;
+}
+
+.flag-toggle.negative .toggle-slider::before {
+  transform: translateX(13px);
+}
+
+.flag-toggle:hover .toggle-slider {
+  opacity: 0.9;
+}
+
+/* Disabled state for toggles */
+.flag-toggle.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.flag-toggle.disabled .toggle-slider {
+  background-color: #999;
+}
+
+.flag-toggle.disabled:hover .toggle-slider {
+  opacity: 0.4;
+}
+
+/* Custom checkbox styling */
+input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  margin-right: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  /* Center align vertically */
+  align-self: center;
+  vertical-align: middle;
+}
+
+input[type=checkbox]:checked {
+  background-color: #00809D;
+  border-color: #00809D;
+}
+
+input[type=checkbox]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+
+/* Custom radio button styling */
+input[type=radio] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  margin-right: 6px;
+  margin-bottom: 0;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+input[type=radio]:checked {
+  border-color: #00809D;
+}
+
+input[type=radio]:checked::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #28a745;
+}
+
+input[type=text] {
+  margin-bottom: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 13px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+  outline: none;
+  border-color: #00809D;
+  box-shadow: 0 0 0 2px rgba(0, 128, 157, 0.1);
+}
+
+.paymentGroup {
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.paymentGroup label {
+  cursor: pointer;
+  flex: 1;
+}
+
+.paymentGroup .radio-item {
+  margin-bottom: 0;
+}
+
+.settingsSection {
+  padding: 0;
+  margin-top: 0;
+}
+
+/* Sticky footer with page selection and CTA */
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 500px;
+}
+
+.page-selection-inline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.page-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #00809D;
+  white-space: nowrap;
+}
+
+.page-selection-inline .radio-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 5px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+/* Hover effect - petrol color (only hover, no selection highlight) */
+.page-selection-inline .radio-item:hover {
+  background-color: rgba(0, 128, 157, 0.06);
+  border-color: rgba(0, 128, 157, 0.15);
+}
+
+input[type=submit] {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #00809D 0%, #006b85 100%);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+input[type=submit]:hover {
+  background: linear-gradient(135deg, #006b85 0%, #005770 100%);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+input[type=submit]:active {
+  background: linear-gradient(135deg, #117a8b 0%, #10707f 100%);
+}
+
+input[type=submit]:disabled {
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 50%;
+  left: 12px;
+  margin-top: -7px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.6s linear infinite;
+}
+
+.verBlock {
+  padding-top: 2px;
+}
+
+label {
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.4;
+}
+
+/* Discount items with percentage input */
+.discount-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.discount-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Hover effect - petrol color */
+.discount-item:hover {
+  background-color: rgba(0, 128, 157, 0.06);
+  border-color: rgba(0, 128, 157, 0.15);
+}
+
+/* Highlight when checkbox is checked - green */
+.discount-item:has(input[type="checkbox"]:checked) {
+  background-color: rgba(40, 167, 69, 0.08);
+  border-color: rgba(40, 167, 69, 0.2);
+}
+
+/* Prevent double highlight on inner elements */
+.discount-item .checkbox-group {
+  flex: 1;
+  margin-bottom: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  pointer-events: none;
+}
+
+.discount-item .checkbox-group:hover {
+  background: transparent;
+  border: none;
+}
+
+/* Re-enable clicking on actual checkbox and input */
+.discount-item input[type="checkbox"],
+.discount-item input[type="number"] {
+  pointer-events: auto;
+}
+
+.percentage-input {
+  width: 70px;
+  padding: 6px 8px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.percentage-input:focus {
+  outline: none;
+  border-color: #00809D;
+}
+
+.percentage-input::placeholder {
+  font-size: 11px;
+  color: #999;
+}
+
+/* Horizontal radio button layout */
+.paymentGroup-horizontal {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+/* Hover effect - petrol color (only hover, no selection highlight) */
+.radio-item:hover {
+  background-color: rgba(0, 128, 157, 0.06);
+  border-color: rgba(0, 128, 157, 0.15);
+}
