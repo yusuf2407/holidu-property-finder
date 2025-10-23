@@ -39,7 +39,7 @@ Holidu Property Finder is a browser extension that helps you quickly find proper
 2. Open Chrome and go to `chrome://extensions/`
 3. Enable "Developer mode" (toggle in top right)
 4. Click "Load unpacked"
-5. Select the `conqueror-testos` folder
+5. Select the `property-finder` folder
 6. ✅ Extension installed!
 
 #### Option B: Production Build (Coming Soon)
@@ -565,13 +565,13 @@ node maintenance-scripts/exportUnavailableProperties.js
 
 **Merge Saved Properties:**
 ```bash
-cd /path/to/conqueror-testos
+cd /path/to/property-finder
 node maintenance-scripts/mergeSavedProperties.js
 ```
 
 **Merge Quarantined Properties:**
 ```bash
-cd /path/to/conqueror-testos
+cd /path/to/property-finder
 node maintenance-scripts/mergeUnavailableProperties.js
 ```
 
@@ -580,7 +580,7 @@ node maintenance-scripts/mergeUnavailableProperties.js
 ## File Structure
 
 ```
-/conqueror-testos/
+/property-finder/
 ├── popup.html                          # Extension UI
 ├── popup.js                            # UI logic & event handlers
 ├── search.js                           # Core search logic (ES, Live API, DB)

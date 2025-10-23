@@ -1,4 +1,7 @@
 {
+  "name": "property-finder",
+  "version": "2.1.0",
+  "description": "Extension to easily find the property you are looking for on the Holidu brands.",
   "dependencies": {
     "node-fetch": "^2.6.1"
   }
