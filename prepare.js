@@ -95,19 +95,21 @@ function normalizeDomainInput(input) {
     
     // If it's already a domain, ensure it has www. prefix (for main holidu domains)
     if (trimmed.includes('.')) {
-        // Check if it's an environment domain (stage, develop, test, etc.)
+        // Check if it's an environment/internal domain
         // These domains should NEVER have www. prefix
-        const isEnvDomain = trimmed.startsWith('stage.') || 
-                           trimmed.startsWith('develop.') || 
-                           trimmed.startsWith('test.') ||
-                           trimmed.includes('.holidu.com'); // Pirate sites and other subdomains
+        const isEnvDomain = trimmed.includes('.holidu.io') ||      // holidu-client-test.holidu.io, holidu-client-develop.holidu.io
+                           trimmed.includes('.holidu.cloud') ||    // stage.holidu.cloud
+                           trimmed.includes('.holidu.com') ||      // Pirate sites (urlaubspiraten.holidu.com)
+                           trimmed.startsWith('stage.') ||         // Legacy stage domains
+                           trimmed.startsWith('develop.') ||       // Legacy develop domains
+                           trimmed.startsWith('test.');            // Legacy test domains
         
         // If it's an env domain, return as-is
         if (isEnvDomain) {
             return trimmed;
         }
         
-        // Add www. only for plain holidu domains (holidu.xx) without www.
+        // Add www. only for plain holidu domains (holidu.de, holidu.com, etc.) without www.
         if (trimmed.includes('holidu.') && !trimmed.startsWith('www.')) {
             return 'www.' + trimmed;
         }
