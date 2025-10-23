@@ -375,99 +375,159 @@ async function searchOnRequestProperties() {
   try {
     console.log('🔍 Searching for On-Request properties via Offers API...');
     
-    // Fallback test property IDs (FERIENWOHNUNGENDE and CLUBRURAL providers)
-    const knownOnRequestIds = [
+    // OPTION 4: Known working on-request properties
+    const knownWorkingIds = [
+      53792365, 53792355,  // Confirmed working properties
       54198494, 54181133, 54200280, 54203535,  // FERIENWOHNUNGENDE
       55672523, 55640672, 55642846, 55662447, 55672481  // CLUBRURAL
     ];
     
-    // Search popular German locations
-    // Use domainId 2399 (urlaubspiraten.holidu.com) where on-request properties are visible
+    let allOnRequestIds = [];
+    
+    // OPTION 1: Try with flexible dates (today + 30-90 days)
+    console.log('🗓️  OPTION 1: Trying with flexible future dates...');
+    const today = new Date();
+    const datesToTry = [
+      { days: 30, label: '30 days from now' },
+      { days: 60, label: '60 days from now' },
+      { days: 90, label: '90 days from now' }
+    ];
+    
+    // OPTION 2: Expanded location list (Germany, Austria, Switzerland)
     const searchLocations = [
+      'Freiburg, Deutschland',  // The location from your test
       'Berlin, Deutschland',
       'München, Deutschland', 
       'Hamburg, Deutschland',
       'Frankfurt, Deutschland',
-      'Köln, Deutschland'
+      'Köln, Deutschland',
+      'Wien, Österreich',  // Austria
+      'Salzburg, Österreich',
+      'Zürich, Schweiz',  // Switzerland
+      'Stuttgart, Deutschland',
+      'Dresden, Deutschland'
     ];
     
-    let allOnRequestIds = [];
-    let searchCount = 0;
-    
-    // Search multiple locations to get a good sample
-    for (const location of searchLocations) {
-      searchCount++;
-      console.log(`  📍 Searching location ${searchCount}/${searchLocations.length}: ${location}`);
+    // OPTION 3: Try multiple date ranges
+    for (const dateOffset of datesToTry) {
+      const checkin = new Date(today);
+      checkin.setDate(checkin.getDate() + dateOffset.days);
+      const checkout = new Date(checkin);
+      checkout.setDate(checkout.getDate() + 2);
       
-      try {
-        // Use urlaubspiraten domain (2399) where on-request properties show up
-        const searchUrl = `https://api.holidu.com/old/rest/v6/search/offers?` +
-          `searchTerm=${encodeURIComponent(location)}&` +
-          `adults=2&` +
-          `checkin=2025-12-01&` +
-          `checkout=2025-12-03&` +
-          `domainId=2399&` +  // urlaubspiraten.holidu.com
-          `locale=de-DE&` +
-          `currency=EUR&` +
-          `pageSize=50`;  // Get 50 results per location
-        
-        const response = await fetch(searchUrl);
-        
-        if (!response.ok) {
-          console.log(`  ⚠️  Search API returned ${response.status} for ${location}`);
+      const checkinStr = checkin.toISOString().split('T')[0];
+      const checkoutStr = checkout.toISOString().split('T')[0];
+      
+      console.log(`  📅 Testing dates: ${checkinStr} to ${checkoutStr} (${dateOffset.label})`);
+      
+      // Try a few key locations with these dates
+      for (const location of searchLocations.slice(0, 3)) {  // Test first 3 locations per date
+        try {
+          const searchUrl = `https://api.holidu.com/old/rest/v6/search/offers?` +
+            `searchTerm=${encodeURIComponent(location)}&` +
+            `adults=2&` +
+            `checkin=${checkinStr}&` +
+            `checkout=${checkoutStr}&` +
+            `domainId=2399&` +  // urlaubspiraten.holidu.com
+            `locale=de-DE&` +
+            `currency=EUR&` +
+            `pageSize=100`;  // Increased to 100
+          
+          const response = await fetch(searchUrl);
+          
+          if (!response.ok) continue;
+          
+          const data = await response.json();
+          
+          if (!data.offers || data.offers.length === 0) continue;
+          
+          // Filter for on-request properties
+          const onRequestOffers = data.offers.filter(offer => 
+            offer.isExpressBookable === true && 
+            offer.isInstantBookable === false
+          );
+          
+          const onRequestIds = onRequestOffers.map(o => o.id);
+          
+          if (onRequestIds.length > 0) {
+            console.log(`  ✅ Found ${onRequestIds.length} on-request properties in ${location} (${dateOffset.label})`);
+            allOnRequestIds.push(...onRequestIds);
+            
+            // If we found some, we can be less aggressive
+            if (allOnRequestIds.length >= 10) {
+              console.log(`  ✓ Found enough properties (${allOnRequestIds.length}), stopping search`);
+              break;
+            }
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 150));
+          
+        } catch (error) {
           continue;
         }
-        
-        const data = await response.json();
-        
-        if (!data.offers || data.offers.length === 0) {
-          console.log(`  ℹ️  No offers found for ${location}`);
+      }
+      
+      if (allOnRequestIds.length >= 10) break;
+    }
+    
+    // If no properties found with flexible dates, try all locations with current approach
+    if (allOnRequestIds.length === 0) {
+      console.log('⚠️  No properties with flexible dates, trying all locations with standard dates...');
+      
+      for (const location of searchLocations) {
+        try {
+          const searchUrl = `https://api.holidu.com/old/rest/v6/search/offers?` +
+            `searchTerm=${encodeURIComponent(location)}&` +
+            `adults=2&` +
+            `checkin=2025-12-01&` +
+            `checkout=2025-12-03&` +
+            `domainId=2399&` +
+            `locale=de-DE&` +
+            `currency=EUR&` +
+            `pageSize=100`;
+          
+          const response = await fetch(searchUrl);
+          if (!response.ok) continue;
+          
+          const data = await response.json();
+          if (!data.offers || data.offers.length === 0) continue;
+          
+          const onRequestOffers = data.offers.filter(offer => 
+            offer.isExpressBookable === true && 
+            offer.isInstantBookable === false
+          );
+          
+          const onRequestIds = onRequestOffers.map(o => o.id);
+          
+          if (onRequestIds.length > 0) {
+            console.log(`  ✅ Found ${onRequestIds.length} on-request properties in ${location}`);
+            allOnRequestIds.push(...onRequestIds);
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 150));
+          
+        } catch (error) {
           continue;
         }
-        
-        // Filter for on-request properties (isExpressBookable=true AND isInstantBookable=false)
-        const onRequestOffers = data.offers.filter(offer => 
-          offer.isExpressBookable === true && 
-          offer.isInstantBookable === false
-        );
-        
-        const onRequestIds = onRequestOffers.map(o => o.id);
-        
-        if (onRequestIds.length > 0) {
-          console.log(`  ✅ Found ${onRequestIds.length} on-request properties in ${location}`);
-          allOnRequestIds.push(...onRequestIds);
-        } else {
-          console.log(`  ℹ️  No on-request properties in ${location}`);
-        }
-        
-        // Small delay to avoid overwhelming the API
-        await new Promise(resolve => setTimeout(resolve, 200));
-        
-      } catch (error) {
-        console.log(`  ❌ Error searching ${location}:`, error.message);
-        continue;
       }
     }
     
-    // Remove duplicates
-    const uniqueIds = [...new Set(allOnRequestIds)];
+    // Remove duplicates and combine with known IDs
+    const uniqueIds = [...new Set([...knownWorkingIds, ...allOnRequestIds])];
     
-    // If dynamic search found properties, return them
+    console.log(`📊 Total unique on-request properties: ${uniqueIds.length}`);
+    
     if (uniqueIds.length > 0) {
-      console.log(`📊 Dynamic search found ${uniqueIds.length} on-request properties`);
       return uniqueIds;
     }
     
-    // Fallback to known test properties
-    console.log(`📊 No properties found via dynamic search, using ${knownOnRequestIds.length} known test properties`);
-    return knownOnRequestIds;
+    // Ultimate fallback
+    console.log(`📊 Using ${knownWorkingIds.length} known working properties as fallback`);
+    return knownWorkingIds;
     
   } catch (error) {
     console.error('❌ searchOnRequestProperties failed:', error.message);
-    // Return fallback test property IDs
-    const fallbackIds = [54198494, 54181133, 54200280, 54203535, 55672523, 55640672, 55642846, 55662447, 55672481];
-    console.log(`📊 Returning ${fallbackIds.length} fallback test properties`);
-    return fallbackIds;
+    return [53792365, 53792355, 54198494, 54181133, 54200280, 54203535, 55672523, 55640672, 55642846, 55662447, 55672481];
   }
 }
 
