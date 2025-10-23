@@ -31,3 +31,5 @@ dist/
 build/
 
 *.zip
+screenshot-raw.png
+screenshot-*.png
