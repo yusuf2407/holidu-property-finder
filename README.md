@@ -32,22 +32,39 @@ Holidu Property Finder is a browser extension that helps you quickly find proper
 
 ## Installation
 
-### 1. Install Extension
+### Step 1: Download the Extension
 
-#### Option A: Load Unpacked (Development)
-1. Clone this repository or download the files
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" (toggle in top right)
-4. Click "Load unpacked"
-5. Select the `property-finder` folder
-6. ✅ Extension installed!
+#### Download from GitHub (Easy Way)
+1. Go to the repository: **https://github.com/yusuf2407/holidu-property-finder**
+2. Click the green **"Code"** button (near the top right)
+3. Click **"Download ZIP"** from the dropdown menu
+4. Save the ZIP file to your computer (e.g., Downloads folder)
+5. **Extract the ZIP file:**
+   - **Windows:** Right-click → "Extract All..."
+   - **Mac:** Double-click the ZIP file
+6. Remember where you extracted it! You'll need this folder in the next step
 
-#### Option B: Production Build (Coming Soon)
-- Extension will be available on Chrome Web Store
+### Step 2: Install in Chrome
 
-### 2. VPN Requirement (Optional)
-- **For ES Search:** Connect to Holidu VPN for Elasticsearch access
-- **Without VPN:** Extension still works using static database fallback
+1. Open Google Chrome
+2. Go to `chrome://extensions/` (copy-paste this into your address bar)
+3. Turn ON **"Developer mode"** (toggle switch in the top-right corner)
+4. Click the **"Load unpacked"** button (appears after enabling Developer mode)
+5. Navigate to the folder you extracted in Step 1
+6. Select the **`holidu-property-finder-main`** folder (or `holidu-property-finder` if renamed)
+7. Click **"Select Folder"** or **"Open"**
+8. ✅ **Extension installed!** You should see it in your extensions list
+
+### Step 3: Pin the Extension (Recommended)
+
+1. Click the **puzzle icon** 🧩 in Chrome's toolbar (top-right)
+2. Find **"Property Finder"** in the list
+3. Click the **pin icon** 📌 next to it
+4. Now you can access it easily from your toolbar!
+
+### VPN Requirement (Optional)
+- **For ES Search:** Connect to Holidu VPN for Elasticsearch access (439K+ properties)
+- **Without VPN:** Extension still works using static database fallback (1,802 properties)
 
 ---
 
@@ -143,10 +160,17 @@ Filter by deposit requirements:
 
 ### 🏢 Multi-units
 
-Filter by multi-unit parent structure:
-- **Supports Parent Unit Structure** - Property has multi-unit structure
+Filter by multi-unit properties:
 
-**Toggles:** ✓ (must have) / ✗ (must not have)
+- **Multi-units Only** - Properties that are multi-unit (hotels, apartment complexes) WITHOUT parent structure
+  - Examples: BOOKINGCOM apartments, MYRENT properties, flat multi-unit structures
+  - Use case: Find multi-unit properties with simpler, non-hierarchical structure
+  
+- **Parent Structure Only** - Properties that have multi-unit parent structure
+  - Examples: Properties with hierarchical unit organization
+  - Use case: Find properties with parent-child unit relationships
+
+**Note:** These filters are mutually exclusive - if "Multi-units Only" is selected, "Parent Structure Only" is ignored
 
 ---
 
@@ -298,10 +322,9 @@ Search for properties from a specific provider:
 
 ### Use Case 5: Find Multi-unit WITHOUT Parent Structure
 ```
-✅ Check "Supports Parent Unit Structure"
-✅ Click red toggle (✗) = must not have
+✅ Check "Multi-units Only"
 ✅ Click "Find & go to apartment"
-→ Opens multi-unit property without parent structure
+→ Opens multi-unit property without parent structure (e.g., BOOKINGCOM, MYRENT)
 ```
 
 ### Use Case 6: Find Test Property for QA
@@ -565,13 +588,13 @@ node maintenance-scripts/exportUnavailableProperties.js
 
 **Merge Saved Properties:**
 ```bash
-cd /path/to/property-finder
+cd /path/to/holidu-property-finder
 node maintenance-scripts/mergeSavedProperties.js
 ```
 
 **Merge Quarantined Properties:**
 ```bash
-cd /path/to/property-finder
+cd /path/to/holidu-property-finder
 node maintenance-scripts/mergeUnavailableProperties.js
 ```
 
@@ -580,7 +603,7 @@ node maintenance-scripts/mergeUnavailableProperties.js
 ## File Structure
 
 ```
-/property-finder/
+/holidu-property-finder/
 ├── popup.html                          # Extension UI
 ├── popup.js                            # UI logic & event handlers
 ├── search.js                           # Core search logic (ES, Live API, DB)
@@ -696,8 +719,8 @@ Internal Holidu tool - Not for public distribution
 
 ---
 
-**Last Updated:** 2025-01-16  
-**Version:** 2.1  
+**Last Updated:** 2025-01-23  
+**Version:** 2.1.0  
 **Maintainer:** Holidu Tech Team
 
 ---

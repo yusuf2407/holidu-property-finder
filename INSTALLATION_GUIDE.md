@@ -4,33 +4,67 @@
 - Google Chrome browser
 - No additional dependencies required
 
-## Installation Steps
+---
 
-### Method 1: Load Unpacked Extension (Development Mode)
+## 📥 Step 1: Download from GitHub
+
+### Easy Download Instructions
+
+1. **Visit the repository:**
+   ```
+   https://github.com/yusuf2407/holidu-property-finder
+   ```
+
+2. **Download the ZIP file:**
+   - Click the green **"Code"** button (near the top right)
+   - Click **"Download ZIP"** from the dropdown menu
+   - Save to your computer (e.g., Downloads folder)
+
+3. **Extract the ZIP file:**
+   - **Windows:** Right-click the ZIP file → Select "Extract All..." → Choose location → Click "Extract"
+   - **Mac:** Simply double-click the ZIP file (it extracts automatically)
+
+4. **Remember the location!**
+   - Note where you extracted the files (you'll need this in Step 2)
+   - The folder will be named `holidu-property-finder-main` or `holidu-property-finder`
+
+---
+
+## 🔧 Step 2: Install in Chrome
 
 1. **Open Chrome Extensions Page**
-   - Navigate to `chrome://extensions/`
-   - Or click Menu (⋮) → Extensions → Manage Extensions
+   - **Method 1:** Type `chrome://extensions/` in your address bar and press Enter
+   - **Method 2:** Click Menu (⋮) → Extensions → Manage Extensions
 
 2. **Enable Developer Mode**
-   - Toggle "Developer mode" switch in top-right corner
+   - Look for the **"Developer mode"** toggle in the top-right corner
+   - Click it to turn it ON (it should be blue/enabled)
 
 3. **Load the Extension**
-   - Click "Load unpacked" button
-   - Select the `property-finder` folder
-   - Extension will appear in your extensions list
+   - Click the **"Load unpacked"** button (appears after enabling Developer mode)
+   - Navigate to the folder where you extracted the ZIP (from Step 1)
+   - Select the **`holidu-property-finder-main`** folder (or `holidu-property-finder`)
+   - Click **"Select Folder"** (Windows) or **"Open"** (Mac)
 
-4. **Pin the Extension (Optional)**
-   - Click the puzzle icon in Chrome toolbar
-   - Find "Property Finder"
-   - Click the pin icon to keep it visible
+4. **Verify Installation**
+   - You should see "Property Finder" in your extensions list
+   - It should show as "Enabled"
 
-### Method 2: Install from ZIP
+---
 
-1. **Extract the ZIP file**
-   - Unzip `property-finder.zip` to a folder
-   
-2. **Follow Method 1 steps** to load the unpacked extension
+## 📌 Step 3: Pin the Extension (Recommended)
+
+1. **Find the Extensions Icon**
+   - Look for the puzzle icon 🧩 in Chrome's toolbar (top-right, next to your profile picture)
+
+2. **Pin the Extension**
+   - Click the puzzle icon
+   - Find **"Property Finder"** in the dropdown list
+   - Click the **pin icon** 📌 next to it
+
+3. **Access the Extension**
+   - The extension icon will now appear in your toolbar
+   - Click it anytime to open the property search interface
 
 ## Verification
 
