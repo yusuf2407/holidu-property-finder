@@ -1,5 +1,13 @@
 # Chrome Web Store Submission Guide
 
+## 🎉 STATUS: SUBMITTED FOR REVIEW
+
+**Submission Date:** October 23, 2025  
+**Status:** Pending Chrome Web Store review (typically 1-3 business days)  
+**Version:** 2.1.0
+
+---
+
 ## ✅ Files Ready for Submission
 
 Your extension is now prepared for Chrome Web Store publication!
@@ -121,40 +129,52 @@ This ensures ONLY users with `@holidu.com` email addresses can see and install t
 
 #### **Privacy Tab:**
 
-**Single Purpose:**
+**Single Purpose Description:**
 ```
-This extension helps Holidu team members find and test properties on Holidu websites with advanced filtering capabilities.
-```
-
-**Permission Justification:**
-
-For **"storage"**:
-```
-Used to save user preferences, discovered properties, and query logs locally in the browser.
+This extension helps Holidu team members quickly search and navigate to specific properties on Holidu websites using advanced filters (payment types, services, discounts, meal options, etc.) for QA testing, customer support, and development purposes.
 ```
 
-For **"activeTab"**:
+**Permission Justifications:**
+
+**Storage Justification:**
 ```
-Required to open and navigate to the selected property page on Holidu domains.
+The storage permission is used to save user preferences, discovered property data, and Elasticsearch query logs locally in the browser. This allows the extension to maintain a database of properties, remember filter settings, and provide query history for debugging without requiring external servers.
 ```
 
-For **"scripting"**:
+**ActiveTab Justification:**
 ```
-Needed to interact with property pages and extract current domain information.
-```
-
-For **"host_permissions"** (all Holidu domains):
-```
-Necessary to access Holidu API, Elasticsearch, and all Holidu brand websites to find and navigate to properties.
+The activeTab permission is required to detect the current Holidu domain the user is browsing and to navigate to the selected property page on that domain. This ensures the extension opens properties on the correct Holidu website (holidu.com, holidu.de, etc.) based on the user's current tab.
 ```
 
-**Remote Code:** 
-- No ❌
+**Scripting Justification:**
+```
+The scripting permission is used to extract the current domain information from the active tab to automatically select the appropriate Holidu website when opening property pages. This allows seamless navigation without requiring users to manually select their domain.
+```
+
+**Host Permission Justification:**
+```
+Host permissions are required to access Holidu's internal APIs (api.holidu.com), Elasticsearch service (kibana-search-7.holidu.cloud), and all Holidu brand domains (holidu.com, holidu.de, holidu.fr, etc.) to fetch property data, validate availability, and navigate users to the correct property pages across different Holidu websites.
+```
+
+**Remote Code Usage:**
+- Selected: **Yes, I am using remote code** ✅
+
+**Remote Code Justification:**
+```
+The extension fetches property data from Holidu's internal APIs (api.holidu.com) and Elasticsearch service (kibana-search-7.holidu.cloud) to search for properties and validate their availability. This data is processed locally and used to navigate users to property pages. No executable code is fetched remotely - only JSON data responses from internal Holidu services.
+```
 
 **Data Usage:**
-- No user data collected ❌
-- No data transmitted to external servers ❌
-- All data stored locally in browser storage ❌
+- No user data collection boxes checked ❌
+- All three disclosure certifications checked ✅:
+  - ✅ I do not sell or transfer user data to third parties
+  - ✅ I do not use or transfer user data for unrelated purposes
+  - ✅ I do not use or transfer user data for creditworthiness/lending
+
+**Privacy Policy URL:**
+```
+https://raw.githubusercontent.com/yusuf2407/holidu-property-finder/main/PRIVACY_POLICY.md
+```
 
 ---
 
@@ -193,21 +213,53 @@ Necessary to access Holidu API, Elasticsearch, and all Holidu brand websites to 
 
 ---
 
-## 🚀 Quick Checklist Before Submitting
+## 🚀 Submission Checklist
 
 - [✅] Icons created (16, 48, 128)
 - [✅] Manifest.json updated
 - [✅] ZIP file created
-- [✅] Promotional tile ready
-- [ ] Screenshot taken (you need to do this)
-- [ ] Registered as Chrome Web Store developer ($5 fee)
-- [ ] All form fields filled in Developer Dashboard
-- [ ] Privacy set to "Organization-only"
-- [ ] Ready to submit!
+- [✅] Promotional tile created
+- [✅] Screenshot taken and uploaded
+- [✅] Registered as Chrome Web Store developer ($5 fee)
+- [✅] All form fields filled in Developer Dashboard
+- [✅] Privacy justifications completed
+- [✅] Privacy policy created and URL added
+- [✅] Privacy set to "Organization-only" (holidu.com)
+- [✅] Submitted for review!
 
 ---
 
-**Good luck with your submission!** 🎉
+## 📧 What Happens Next
 
-Your extension is ready to be published to the Chrome Web Store as a private, organization-only extension for Holidu team members.
+1. **Review Period:** Chrome Web Store will review your submission (1-3 business days)
+2. **Email Notification:** You'll receive an email when:
+   - Extension is approved ✅
+   - More information is needed 📝
+   - Extension is rejected (with reasons) ❌
+3. **After Approval:** Extension will be live for `@holidu.com` users
+4. **Updates:** To update, increment version in manifest.json, create new ZIP, and upload
+
+---
+
+## 🔄 How to Update the Extension
+
+When you need to release version 2.2.0 or later:
+
+1. Make your code changes
+2. Update version in `manifest.json` (e.g., `"version": "2.2.0"`)
+3. Create new ZIP file:
+   ```bash
+   zip -r holidu-property-finder-v2.2.0.zip . -x "*.git*" "*node_modules/*" "*.DS_Store" "*.zip"
+   ```
+4. Go to Chrome Web Store Developer Dashboard
+5. Click on your extension → **"Package"** tab
+6. Upload new ZIP file
+7. Click **"Submit for Review"**
+8. Users will receive automatic update within a few hours
+
+---
+
+**Congratulations on your submission!** 🎉
+
+Your extension has been submitted to the Chrome Web Store as a private, organization-only extension for Holidu team members.
 
