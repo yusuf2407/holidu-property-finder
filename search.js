@@ -368,6 +368,109 @@ async function getMultiUnitPropertyIds() {
   }
 }
 
+// Search for On-Request properties via Offers API
+// On-request properties only appear on certain domains (urlaubspiraten, etc.), not main Holidu domains
+// Note: In ES, these fields exist in nested path: apartmentSimples.isExpressBookable / apartmentSimples.isInstantBookable
+async function searchOnRequestProperties() {
+  try {
+    console.log('🔍 Searching for On-Request properties via Offers API...');
+    
+    // Fallback test property IDs (FERIENWOHNUNGENDE and CLUBRURAL providers)
+    const knownOnRequestIds = [
+      54198494, 54181133, 54200280, 54203535,  // FERIENWOHNUNGENDE
+      55672523, 55640672, 55642846, 55662447, 55672481  // CLUBRURAL
+    ];
+    
+    // Search popular German locations
+    // Use domainId 2399 (urlaubspiraten.holidu.com) where on-request properties are visible
+    const searchLocations = [
+      'Berlin, Deutschland',
+      'München, Deutschland', 
+      'Hamburg, Deutschland',
+      'Frankfurt, Deutschland',
+      'Köln, Deutschland'
+    ];
+    
+    let allOnRequestIds = [];
+    let searchCount = 0;
+    
+    // Search multiple locations to get a good sample
+    for (const location of searchLocations) {
+      searchCount++;
+      console.log(`  📍 Searching location ${searchCount}/${searchLocations.length}: ${location}`);
+      
+      try {
+        // Use urlaubspiraten domain (2399) where on-request properties show up
+        const searchUrl = `https://api.holidu.com/old/rest/v6/search/offers?` +
+          `searchTerm=${encodeURIComponent(location)}&` +
+          `adults=2&` +
+          `checkin=2025-12-01&` +
+          `checkout=2025-12-03&` +
+          `domainId=2399&` +  // urlaubspiraten.holidu.com
+          `locale=de-DE&` +
+          `currency=EUR&` +
+          `pageSize=50`;  // Get 50 results per location
+        
+        const response = await fetch(searchUrl);
+        
+        if (!response.ok) {
+          console.log(`  ⚠️  Search API returned ${response.status} for ${location}`);
+          continue;
+        }
+        
+        const data = await response.json();
+        
+        if (!data.offers || data.offers.length === 0) {
+          console.log(`  ℹ️  No offers found for ${location}`);
+          continue;
+        }
+        
+        // Filter for on-request properties (isExpressBookable=true AND isInstantBookable=false)
+        const onRequestOffers = data.offers.filter(offer => 
+          offer.isExpressBookable === true && 
+          offer.isInstantBookable === false
+        );
+        
+        const onRequestIds = onRequestOffers.map(o => o.id);
+        
+        if (onRequestIds.length > 0) {
+          console.log(`  ✅ Found ${onRequestIds.length} on-request properties in ${location}`);
+          allOnRequestIds.push(...onRequestIds);
+        } else {
+          console.log(`  ℹ️  No on-request properties in ${location}`);
+        }
+        
+        // Small delay to avoid overwhelming the API
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+      } catch (error) {
+        console.log(`  ❌ Error searching ${location}:`, error.message);
+        continue;
+      }
+    }
+    
+    // Remove duplicates
+    const uniqueIds = [...new Set(allOnRequestIds)];
+    
+    // If dynamic search found properties, return them
+    if (uniqueIds.length > 0) {
+      console.log(`📊 Dynamic search found ${uniqueIds.length} on-request properties`);
+      return uniqueIds;
+    }
+    
+    // Fallback to known test properties
+    console.log(`📊 No properties found via dynamic search, using ${knownOnRequestIds.length} known test properties`);
+    return knownOnRequestIds;
+    
+  } catch (error) {
+    console.error('❌ searchOnRequestProperties failed:', error.message);
+    // Return fallback test property IDs
+    const fallbackIds = [54198494, 54181133, 54200280, 54203535, 55672523, 55640672, 55642846, 55662447, 55672481];
+    console.log(`📊 Returning ${fallbackIds.length} fallback test properties`);
+    return fallbackIds;
+  }
+}
+
 async function findProperty(criteria) {
     // Check if we need offers-discounts search (for discount filters)
     // Note: hasLoyaltyDiscount uses Static DB only (no ES/Live API validation)
@@ -427,6 +530,33 @@ async function findProperty(criteria) {
     console.log('needsEsSearch:', needsEsSearch);
     console.log('needsOnlyStaticDb:', needsOnlyStaticDb);
     console.log('needsOnlyLiveValidation:', needsOnlyLiveValidation);
+    
+    // Special case: On-Request properties - try dynamic search via Offers API
+    if (criteria.paymentType === 'On-Request' && !needsEsSearch) {
+      console.log('🔍 Searching for On-Request properties via Offers API...');
+      try {
+        const onRequestIds = await searchOnRequestProperties();
+        if (onRequestIds && onRequestIds.length > 0) {
+          console.log(`✅ Found ${onRequestIds.length} on-request properties from Offers API`);
+          
+          // Pick a random property
+          const randomId = onRequestIds[Math.floor(Math.random() * onRequestIds.length)];
+          console.log(`🎲 Selected random on-request property: ${randomId}`);
+          
+          // Update CTA to show found status
+          if (typeof window.updateSearchStatus === 'function') {
+            console.log('📱 Updating CTA: Found (Offers API)');
+            window.updateSearchStatus('Found');
+          }
+          
+          return { id: randomId };
+        } else {
+          console.log('⚠️  No on-request properties found via Offers API, falling back to static DB');
+        }
+      } catch (error) {
+        console.error('❌ Offers API search error, falling back to static DB:', error.message);
+      }
+    }
     
     // If criteria can ONLY be filtered via static DB (like test properties), skip ES completely
     if (needsOnlyStaticDb && !needsEsSearch) {
