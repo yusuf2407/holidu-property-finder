@@ -393,9 +393,14 @@ async function searchOnRequestProperties() {
       { days: 90, label: '90 days from now' }
     ];
     
-    // OPTION 2: Expanded location list (Germany, Austria, Switzerland)
+    // OPTION 2: Expanded location list (Spain - CLUBRURAL focus, plus Germany, Austria, Switzerland)
     const searchLocations = [
-      'Freiburg, Deutschland',  // The location from your test
+      'Madrid, España',  // Spain - CLUBRURAL's primary market
+      'Barcelona, España',
+      'Sevilla, España',
+      'Valencia, España',
+      'Granada, España',
+      'Freiburg, Deutschland',
       'Berlin, Deutschland',
       'München, Deutschland', 
       'Hamburg, Deutschland',
@@ -428,8 +433,8 @@ async function searchOnRequestProperties() {
             `adults=2&` +
             `checkin=${checkinStr}&` +
             `checkout=${checkoutStr}&` +
-            `domainId=2399&` +  // urlaubspiraten.holidu.com
-            `locale=de-DE&` +
+            `domainId=3381&` +  // clubrural.com
+            `locale=es-ES&` +  // Spanish locale for CLUBRURAL
             `currency=EUR&` +
             `pageSize=100`;  // Increased to 100
           
@@ -481,8 +486,8 @@ async function searchOnRequestProperties() {
             `adults=2&` +
             `checkin=2025-12-01&` +
             `checkout=2025-12-03&` +
-            `domainId=2399&` +
-            `locale=de-DE&` +
+            `domainId=3381&` +  // clubrural.com
+            `locale=es-ES&` +  // Spanish locale for CLUBRURAL
             `currency=EUR&` +
             `pageSize=100`;
           
