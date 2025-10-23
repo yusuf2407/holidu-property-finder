@@ -736,7 +736,7 @@ ES query: {...}  // Still logged to console
 ```
 
 ### Benefits:
-- Resilience (ES down at night, VPN off, network issues)
+- Resilience (VPN off, network issues)
 - Growing database (organic growth over time)
 - No manual work required
 - Fast fallback searches

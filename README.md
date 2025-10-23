@@ -267,7 +267,7 @@ Search for properties from a specific provider:
 #### 1️⃣ **Elasticsearch (ES)**
 - **Size:** 439K+ properties (offers-discounts), millions in detailed-apartments
 - **Speed:** Very fast (optimized queries)
-- **Availability:** Requires VPN, down 8 PM - 7 AM
+- **Availability:** Requires VPN
 - **Use:** Provider search, multi-unit, services, discounts
 
 #### 2️⃣ **Static Database (`properties.json`)**
@@ -357,7 +357,7 @@ Search for properties from a specific provider:
 
 **Possible reasons:**
 1. **Too many criteria** - Try fewer filters
-2. **ES timeout** - Check VPN connection, wait for ES to come back online
+2. **ES timeout** - Check VPN connection
 3. **No matching properties** - Criteria combination doesn't exist
 
 **Solutions:**
@@ -380,7 +380,7 @@ Search for properties from a specific provider:
 ### ❌ Search Stuck on "Searching..."
 
 **Possible reasons:**
-1. **ES timeout** - VPN off or ES unreachable
+1. **ES timeout** - VPN off
 2. **API error** - Holidu API temporarily down
 3. **Network issue** - Check internet connection
 
