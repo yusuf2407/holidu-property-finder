@@ -95,8 +95,14 @@ function normalizeDomainInput(input) {
     
     // If it's already a domain, ensure it has www. prefix (for main holidu domains)
     if (trimmed.includes('.')) {
-        // Add www. if it's a holidu domain without it
-        if (trimmed.includes('holidu.') && !trimmed.startsWith('www.') && !trimmed.includes('.holidu.com')) {
+        // Check if it's an environment domain (stage, develop, test, etc.)
+        const isEnvDomain = trimmed.startsWith('stage.') || 
+                           trimmed.startsWith('develop.') || 
+                           trimmed.startsWith('test.') ||
+                           trimmed.includes('.holidu.com'); // Pirate sites and other subdomains
+        
+        // Add www. only if it's a plain holidu domain without subdomain
+        if (trimmed.includes('holidu.') && !trimmed.startsWith('www.') && !isEnvDomain) {
             return 'www.' + trimmed;
         }
         return trimmed;
