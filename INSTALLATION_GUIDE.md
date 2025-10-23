@@ -17,18 +17,18 @@
 
 3. **Load the Extension**
    - Click "Load unpacked" button
-   - Select the `conqueror-testos` folder
+   - Select the `property-finder` folder
    - Extension will appear in your extensions list
 
 4. **Pin the Extension (Optional)**
    - Click the puzzle icon in Chrome toolbar
-   - Find "Conqueror Testos"
+   - Find "Property Finder"
    - Click the pin icon to keep it visible
 
 ### Method 2: Install from ZIP
 
 1. **Extract the ZIP file**
-   - Unzip `conqueror-testos.zip` to a folder
+   - Unzip `property-finder.zip` to a folder
    
 2. **Follow Method 1 steps** to load the unpacked extension
 
