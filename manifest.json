@@ -9,6 +9,9 @@
   "host_permissions": [
     "https://api.holidu.com/*",
     "https://kibana-search-7.holidu.cloud/*",
+    "https://holidu-client-develop.holidu.io/*",
+    "https://holidu-client-test.holidu.io/*",
+    "https://stage.holidu.cloud/*",
     "http://localhost/*",
     "https://localhost/*",
     "https://*.holidu.com/*",
