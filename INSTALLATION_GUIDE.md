@@ -47,7 +47,7 @@
    - Click **"Select Folder"** (Windows) or **"Open"** (Mac)
 
 4. **Verify Installation**
-   - You should see "Property Finder" in your extensions list
+   - You should see "Holidu Property Finder" in your extensions list
    - It should show as "Enabled"
 
 ---
@@ -59,7 +59,7 @@
 
 2. **Pin the Extension**
    - Click the puzzle icon
-   - Find **"Property Finder"** in the dropdown list
+   - Find **"Holidu Property Finder"** in the dropdown list
    - Click the **pin icon** 📌 next to it
 
 3. **Access the Extension**
