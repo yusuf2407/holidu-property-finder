@@ -1835,7 +1835,14 @@ async function resolveViaLiveApi(candidates, criteria){
         }
       }
 
-      // Minimal dynamic checks (extend if needed)
+      // Validate all criteria using matchesLiveCriteria (checks discounts, services, tax, deposits)
+      const liveMatches = matchesLiveCriteria(price, criteria, avail);
+      if (!liveMatches) {
+        console.log(`  ⏭️  Property ${id} - failed live criteria validation`);
+        continue;
+      }
+
+      // Additional dynamic checks
       if (criteria.paymentType){
         const p = price?.paymentDetails;
         
@@ -1852,55 +1859,7 @@ async function resolveViaLiveApi(candidates, criteria){
         if (type !== criteria.paymentType) continue;
       }
 
-      // Check negative flags for services, tourist tax, and deposits
-      const costs = price?.rates?.REFUNDABLE?.receipt?.priceDetails?.items || [];
-      
-      // Services checks
-      if (criteria.hasIncludedCosts_negative) {
-        const hasIncluded = costs.some(c => c.paymentType === 'INCLUDED');
-        if (hasIncluded) continue;
-      }
-      if (criteria.hasMandatoryCosts_negative) {
-        const hasMandatory = costs.some(c => c.paymentType === 'MANDATORY');
-        if (hasMandatory) continue;
-      }
-      if (criteria.hasSelectableCosts_negative) {
-        const hasSelectable = costs.some(c => c.paymentType === 'SELECTABLE');
-        if (hasSelectable) continue;
-      }
-      if (criteria.hasFreeSelectableCosts_negative) {
-        const hasFreeSelectable = costs.some(c => c.paymentType === 'SELECTABLE' && c.price?.amount === 0);
-        if (hasFreeSelectable) continue;
-      }
-      if (criteria.hasOnsiteCosts_negative) {
-        const hasOnsite = costs.some(c => c.paymentType === 'ON_SITE');
-        if (hasOnsite) continue;
-      }
-      if (criteria.hasMandatoryOnsiteCosts_negative) {
-        const hasMandatoryOnsite = costs.some(c => c.paymentType === 'MANDATORY_ON_SITE');
-        if (hasMandatoryOnsite) continue;
-      }
-
-      // Tourist tax checks
-      if (criteria.hasTouristTax_negative) {
-        const hasTouristTax = costs.some(c => c.costType === 'TOURIST_TAX' && c.paymentType !== 'ON_SITE' && c.paymentType !== 'MANDATORY_ON_SITE');
-        if (hasTouristTax) continue;
-      }
-      if (criteria.hasTouristTaxOnSite_negative) {
-        const hasTouristTaxOnsite = costs.some(c => c.costType === 'TOURIST_TAX' && (c.paymentType === 'ON_SITE' || c.paymentType === 'MANDATORY_ON_SITE'));
-        if (hasTouristTaxOnsite) continue;
-      }
-
-      // Deposit checks
-      if (criteria.hasDeposit_negative) {
-        const hasDeposit = costs.some(c => c.costType === 'SECURITY_DEPOSIT' && c.paymentType !== 'ON_SITE' && c.paymentType !== 'MANDATORY_ON_SITE');
-        if (hasDeposit) continue;
-      }
-      if (criteria.hasDepositOnsite_negative) {
-        const hasDepositOnsite = costs.some(c => c.costType === 'SECURITY_DEPOSIT' && (c.paymentType === 'ON_SITE' || c.paymentType === 'MANDATORY_ON_SITE'));
-        if (hasDepositOnsite) continue;
-      }
-
+      // Note: Services/Tax/Deposit checks (both positive and negative) are now handled by matchesLiveCriteria above
       // Multi-unit checks are handled by ES query filters (isMultiUnit, supportsParentUnitStructure)
 
       // ✅ Save this property to properties.json for future fallback
