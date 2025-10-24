@@ -127,14 +127,60 @@ async function findAvailableDates(propertyId, freeCancellation){
     let checkin, checkout = null;
   
     if (availabilities && availabilities.checkinDates && availabilities.checkinDates.length > 0){
-      let i = 10;
-      do {
+      // Try up to 10 random dates to find one that's actually bookable
+      let attempts = 0;
+      const maxAttempts = Math.min(10, availabilities.checkinDates.length);
+      
+      while (attempts < maxAttempts) {
+        // Pick a random date
         checkin = availabilities.checkinDates[Math.floor(Math.random() * availabilities.checkinDates.length)];
         checkout = availabilities.firstPossibleCheckout[checkin];
-        i--;
+        attempts++;
+        
+        // Check free cancellation constraint
+        if (freeCancellation) {
+          const daysUntilCheckin = Math.abs(new Date(checkin.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ) - new Date()) / (1000 * 60 * 60 * 24);
+          if (daysUntilCheckin < freeCancellation) {
+            console.log(`⏭️  Date ${checkin} doesn't meet free cancellation requirement (${daysUntilCheckin} < ${freeCancellation} days)`);
+            continue; // Try another date
+          }
+        }
+        
+        // Validate date is actually bookable via pricing API
+        try {
+          const priceRes = await fetch(`https://api.holidu.com/old/rest/v6/search/offers/${propertyId}/prices?domainId=1&locale=en-IE&currency=EUR`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              checkin: checkin,
+              checkout: checkout,
+              adults: [{ age: null }, { age: null }],
+              kids: [],
+              selectedOptions: [],
+              paymentMethod: null
+            })
+          });
+          
+          if (priceRes.ok) {
+            const priceData = await priceRes.json();
+            // Check if dates are actually bookable (has pricing and is available)
+            if (priceData.isAvailable && (priceData.costsV2 || priceData.rates)) {
+              console.log(`✅ Found bookable date: ${checkin} → ${checkout}`);
+              return { checkin, checkout };
+            } else {
+              console.log(`⏭️  Date ${checkin} not bookable (isAvailable: ${priceData.isAvailable})`);
+            }
+          } else {
+            console.log(`⏭️  Date ${checkin} - pricing API failed`);
+          }
+        } catch (error) {
+          console.log(`⏭️  Date ${checkin} - error validating: ${error.message}`);
+        }
       }
-      while(i>0 && checkin && !(!freeCancellation || (Math.abs(new Date(checkin.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") ) - new Date())/ (1000 * 60 * 60 * 24)) >= freeCancellation ))
       
+      // If no bookable dates found, return null
+      console.log(`❌ No bookable dates found after ${maxAttempts} attempts`);
+      return { checkin: null, checkout: null };
     }
     
     return { checkin, checkout };
