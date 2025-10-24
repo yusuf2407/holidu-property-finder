@@ -43360,5 +43360,30 @@
     "provider": "TOMAS_ENGADIN_WL",
     "paymentType": "TOMAS",
     "hasBreakfast": true
+  },
+  {
+    "id": 57358106,
+    "provider": "TOMAS_ENGADIN_WL",
+    "isMultiunit": true,
+    "supportsParentUnitStructure": true,
+    "reviewCount": 0,
+    "hasIncludedCosts": false,
+    "hasMandatoryCosts": false,
+    "hasSelectableCosts": false,
+    "hasFreeSelectableCosts": false,
+    "hasOnsiteCosts": false,
+    "hasMandatoryOnsiteCosts": false,
+    "hasTouristTax": false,
+    "hasTouristTaxOnSite": false,
+    "hasDeposit": false,
+    "hasDepositOnsite": false,
+    "hasFreeCancellation": false,
+    "hasNonRefundableDiscount": false,
+    "paymentType": "TOMAS",
+    "isExpressBookable": false,
+    "isInstantBookable": false,
+    "hasBreakfast": false,
+    "hasHalfBoard": false,
+    "hasFullBoard": false
   }
 ]
