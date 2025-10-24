@@ -5,7 +5,7 @@
   "manifest_version": 3,
   "background": {
   },
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab"],
   "host_permissions": [
     "https://api.holidu.com/*",
     "https://kibana-search-7.holidu.cloud/*",
