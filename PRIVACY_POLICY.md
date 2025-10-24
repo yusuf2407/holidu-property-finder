@@ -37,9 +37,6 @@ Used to save property data, user preferences, and query logs locally in your bro
 ### ActiveTab Permission
 Required to detect your current Holidu domain and navigate to the selected property page on the correct website.
 
-### Scripting Permission
-Used to extract domain information from the active tab to automatically select the appropriate Holidu website.
-
 ### Host Permissions
 Required to access:
 - **Holidu Internal APIs** (api.holidu.com) - To fetch property data
