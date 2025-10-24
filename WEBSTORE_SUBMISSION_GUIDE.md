@@ -1,10 +1,29 @@
 # Chrome Web Store Submission Guide
 
-## 🎉 STATUS: SUBMITTED FOR REVIEW
+## 🔄 STATUS: READY FOR RESUBMISSION
 
-**Submission Date:** October 23, 2025  
-**Status:** Pending Chrome Web Store review (typically 1-3 business days)  
-**Version:** 2.1.0
+**Previous Rejection Date:** October 24, 2025  
+**Rejection Reason:** Unused `scripting` permission (Violation ID: Purple Potassium)  
+**Fix Applied:** ✅ Removed unused `scripting` permission from manifest.json  
+**Current Version:** 2.1.0  
+**Status:** Ready to resubmit with fixes applied
+
+---
+
+## 🔧 What Was Fixed
+
+### Issue: Unused Permission Violation
+Chrome Web Store rejected the submission because we requested the `scripting` permission but never used it in the code.
+
+### Fix Applied:
+1. ✅ Removed `scripting` permission from `manifest.json`
+2. ✅ Updated `PRIVACY_POLICY.md` to remove scripting permission reference
+3. ✅ Created new package: `holidu-property-finder-v2.1.0.zip`
+4. ✅ Updated permission justifications in this guide
+
+### Current Permissions (2 only):
+- ✅ `storage` - Save preferences and property data locally
+- ✅ `activeTab` - Detect current domain and navigate to properties
 
 ---
 
@@ -21,7 +40,7 @@ Your extension is now prepared for Chrome Web Store publication!
    - `manifest.json` updated with all icon sizes
 
 2. **Distribution Package** (✅ Complete):
-   - `holidu-property-finder-webstore.zip` - Ready to upload
+   - `holidu-property-finder-v2.1.0.zip` - Ready to upload (updated with fix)
 
 3. **Promotional Image** (✅ Complete):
    - `promo-tile-440x280.png` - Small promotional tile
@@ -33,12 +52,14 @@ Your extension is now prepared for Chrome Web Store publication!
 ### Step 1: Go to Chrome Web Store Developer Dashboard
 1. Visit: https://chrome.google.com/webstore/devconsole
 2. Sign in with your `@holidu.com` Google account
-3. Click **"New Item"** button
+3. Find your existing item: **Holidu Property Finder** (ID: `nddkflapkpfljkfnehffjfnfelmeocmf`)
+4. Click on it to open the dashboard
 
 ### Step 2: Upload ZIP File
-1. Click **"Choose file"** or drag and drop
-2. Select: `holidu-property-finder-webstore.zip`
+1. Click **"Upload new package"** (for resubmission)
+2. Select: `holidu-property-finder-v2.1.0.zip`
 3. Wait for upload and validation to complete
+4. Verify that permissions show only `storage` and `activeTab` (no `scripting`)
 
 ### Step 3: Fill in Store Listing Information
 
@@ -146,23 +167,14 @@ The storage permission is used to save user preferences, discovered property dat
 The activeTab permission is required to detect the current Holidu domain the user is browsing and to navigate to the selected property page on that domain. This ensures the extension opens properties on the correct Holidu website (holidu.com, holidu.de, etc.) based on the user's current tab.
 ```
 
-**Scripting Justification:**
-```
-The scripting permission is used to extract the current domain information from the active tab to automatically select the appropriate Holidu website when opening property pages. This allows seamless navigation without requiring users to manually select their domain.
-```
-
 **Host Permission Justification:**
 ```
 Host permissions are required to access Holidu's internal APIs (api.holidu.com), Elasticsearch service (kibana-search-7.holidu.cloud), and all Holidu brand domains (holidu.com, holidu.de, holidu.fr, etc.) to fetch property data, validate availability, and navigate users to the correct property pages across different Holidu websites.
 ```
 
 **Remote Code Usage:**
-- Selected: **Yes, I am using remote code** ✅
-
-**Remote Code Justification:**
-```
-The extension fetches property data from Holidu's internal APIs (api.holidu.com) and Elasticsearch service (kibana-search-7.holidu.cloud) to search for properties and validate their availability. This data is processed locally and used to navigate users to property pages. No executable code is fetched remotely - only JSON data responses from internal Holidu services.
-```
+- Selected: **No, I am not using remote code** ✅
+- Note: Fetching JSON data from APIs is NOT considered remote code. Only executable JavaScript/WebAssembly loaded externally counts as remote code.
 
 **Data Usage:**
 - No user data collection boxes checked ❌
