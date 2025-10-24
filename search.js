@@ -1558,9 +1558,17 @@ async function searchOffersDiscounts(criteria) {
     }
     
     const body = {
-      query: { bool: { filter: filters } },
+      query: { 
+        function_score: {
+          query: { bool: { filter: filters } },
+          random_score: {
+            seed: Date.now(), // Different results each time
+            field: "_seq_no"
+          }
+        }
+      },
       _source: ['offerId', 'discountType', 'discountPercentage', 'timestamp', 'provider'],
-      size: 100 // Get more IDs for better randomization
+      size: 500 // Increased from 100 to get more variety
     };
     
     console.log('  offers-discounts query:', JSON.stringify(body, null, 2));
@@ -1689,9 +1697,17 @@ async function runEsSearch(criteria){
     }
 
     const body = {
-      query: { bool: { filter: filters } },
+      query: { 
+        function_score: {
+          query: { bool: { filter: filters } },
+          random_score: {
+            seed: Date.now(), // Different results each time
+            field: "_seq_no"
+          }
+        }
+      },
       _source: ["id", "provider"],
-      size: 50
+      size: 500 // Increased from 50 to get more variety
     };
 
     console.log("ES query:", JSON.stringify(body, null, 2));
@@ -1738,11 +1754,11 @@ async function runEsSearch(criteria){
 }
 
 async function resolveViaLiveApi(candidates, criteria){
-  console.log(`🔍 Resolving via Live API - checking ${Math.min(candidates.length, 50)} candidates...`);
+  console.log(`🔍 Resolving via Live API - checking ${Math.min(candidates.length, 100)} candidates...`);
   
   // Randomize the order to avoid always trying the same properties first
   const shuffled = candidates.sort(() => Math.random() - 0.5);
-  const capped = shuffled.slice(0, 50);
+  const capped = shuffled.slice(0, 100); // Increased from 50 to 100 for more variety
   console.log(`🔀 Randomized candidate order: [${capped.slice(0, 5).join(', ')}${capped.length > 5 ? ', ...' : ''}]`);
   
   let attemptCount = 0;
