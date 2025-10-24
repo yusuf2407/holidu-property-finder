@@ -1189,10 +1189,10 @@ function matchesLiveCriteria(priceResponse, criteria, availResponse) {
     }
     
     if (criteria.hasSelectableCosts) {
-      // SELECTABLE = OPTIONAL in costsV2
+      // SELECTABLE = OPTIONAL in costsV2 (excludes FREE variants)
       console.log('  🔍 DEBUG: Sample costs with paymentType:', costs.slice(0, 3).map(c => ({label: c.label, paymentType: c.paymentType})));
       
-      const hasSelectable = costs.some(c => c.paymentType === 'SELECTABLE' || c.paymentType === 'OPTIONAL' || c.paymentType === 'OPTIONAL_FREE');
+      const hasSelectable = costs.some(c => c.paymentType === 'SELECTABLE' || c.paymentType === 'OPTIONAL');
       console.log('  💼 Selectable Costs check:', hasSelectable);
       console.log('  🔍 DEBUG: Costs with OPTIONAL:', costs.filter(c => c.paymentType === 'OPTIONAL').length);
       console.log('  🔍 DEBUG: Costs with OPTIONAL_FREE:', costs.filter(c => c.paymentType === 'OPTIONAL_FREE').length);
@@ -1341,7 +1341,7 @@ function matchesLiveCriteria(priceResponse, criteria, availResponse) {
     }
     
     if (criteria.hasSelectableCosts_negative) {
-      const hasSelectable = costs.some(c => c.paymentType === 'SELECTABLE' || c.paymentType === 'OPTIONAL' || c.paymentType === 'OPTIONAL_FREE');
+      const hasSelectable = costs.some(c => c.paymentType === 'SELECTABLE' || c.paymentType === 'OPTIONAL');
       console.log('  💼 Selectable Costs (negative) check - has:', hasSelectable);
       if (hasSelectable) {
         console.log('    ❌ FAILED - property HAS selectable costs (should not)');
