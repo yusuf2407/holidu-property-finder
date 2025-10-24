@@ -1568,7 +1568,7 @@ async function searchOffersDiscounts(criteria) {
         }
       },
       _source: ['offerId', 'discountType', 'discountPercentage', 'timestamp', 'provider'],
-      size: 500 // Increased from 100 to get more variety
+      size: 100 // Random score ensures different results each time
     };
     
     console.log('  offers-discounts query:', JSON.stringify(body, null, 2));
@@ -1707,7 +1707,7 @@ async function runEsSearch(criteria){
         }
       },
       _source: ["id", "provider"],
-      size: 500 // Increased from 50 to get more variety
+      size: 50 // Random score ensures different results each time
     };
 
     console.log("ES query:", JSON.stringify(body, null, 2));
@@ -1754,11 +1754,11 @@ async function runEsSearch(criteria){
 }
 
 async function resolveViaLiveApi(candidates, criteria){
-  console.log(`🔍 Resolving via Live API - checking ${Math.min(candidates.length, 100)} candidates...`);
+  console.log(`🔍 Resolving via Live API - checking ${Math.min(candidates.length, 50)} candidates...`);
   
   // Randomize the order to avoid always trying the same properties first
   const shuffled = candidates.sort(() => Math.random() - 0.5);
-  const capped = shuffled.slice(0, 100); // Increased from 50 to 100 for more variety
+  const capped = shuffled.slice(0, 50);
   console.log(`🔀 Randomized candidate order: [${capped.slice(0, 5).join(', ')}${capped.length > 5 ? ', ...' : ''}]`);
   
   let attemptCount = 0;
