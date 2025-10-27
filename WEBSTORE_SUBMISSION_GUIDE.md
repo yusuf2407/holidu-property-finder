@@ -1,29 +1,38 @@
 # Chrome Web Store Submission Guide
 
-## 🔄 STATUS: READY FOR RESUBMISSION
+## 🔄 STATUS: READY FOR RESUBMISSION (3rd Attempt)
 
-**Previous Rejection Date:** October 24, 2025  
-**Rejection Reason:** Unused `scripting` permission (Violation ID: Purple Potassium)  
-**Fix Applied:** ✅ Removed unused `scripting` permission from manifest.json  
+**1st Rejection:** October 24, 2025 - Unused `scripting` permission (Violation ID: Purple Potassium)  
+**2nd Rejection:** October 27, 2025 - Unused `activeTab` permission (Violation ID: Purple Potassium)  
+**Root Cause:** Used wrong permission - need `tabs` not `activeTab` to read tab.url  
+**Fix Applied:** ✅ Changed from `activeTab` to `tabs` permission  
 **Current Version:** 2.1.0  
-**Status:** Ready to resubmit with fixes applied
+**Status:** Ready to resubmit with correct permission
 
 ---
 
 ## 🔧 What Was Fixed
 
-### Issue: Unused Permission Violation
-Chrome Web Store rejected the submission because we requested the `scripting` permission but never used it in the code.
+### Issue Timeline:
+1. **1st Rejection:** Unused `scripting` permission - we removed it
+2. **2nd Rejection:** Unused `activeTab` permission - wrong permission!
+3. **Root Cause:** Extension reads `tabs[0].url` which requires `tabs` permission, not `activeTab`
+
+### Technical Explanation:
+- `activeTab` = Temporary access to inject scripts when user clicks icon
+- `tabs` = Read tab metadata like URL, title, etc.
+- Our code in `prepare.js` line 281: `new URL(tabs[0].url).hostname` requires **`tabs`** permission
 
 ### Fix Applied:
-1. ✅ Removed `scripting` permission from `manifest.json`
-2. ✅ Updated `PRIVACY_POLICY.md` to remove scripting permission reference
-3. ✅ Created new package: `holidu-property-finder-v2.1.0.zip`
-4. ✅ Updated permission justifications in this guide
+1. ✅ Removed `scripting` permission (1st fix)
+2. ✅ Changed `activeTab` to `tabs` permission (2nd fix)
+3. ✅ Updated `PRIVACY_POLICY.md` to reflect tabs permission
+4. ✅ Recreated package with `prepare.js` included
+5. ✅ Updated permission justifications below
 
 ### Current Permissions (2 only):
 - ✅ `storage` - Save preferences and property data locally
-- ✅ `activeTab` - Detect current domain and navigate to properties
+- ✅ `tabs` - Read current tab URL and open new tabs
 
 ---
 
@@ -59,7 +68,7 @@ Your extension is now prepared for Chrome Web Store publication!
 1. Click **"Upload new package"** (for resubmission)
 2. Select: `holidu-property-finder-v2.1.0.zip`
 3. Wait for upload and validation to complete
-4. Verify that permissions show only `storage` and `activeTab` (no `scripting`)
+4. ✅ Verify that permissions show only `storage` and `tabs` (correct!)
 
 ### Step 3: Fill in Store Listing Information
 
@@ -162,9 +171,9 @@ This extension helps Holidu team members quickly search and navigate to specific
 The storage permission is used to save user preferences, discovered property data, and Elasticsearch query logs locally in the browser. This allows the extension to maintain a database of properties, remember filter settings, and provide query history for debugging without requiring external servers.
 ```
 
-**ActiveTab Justification:**
+**Tabs Justification:**
 ```
-The activeTab permission is required to detect the current Holidu domain the user is browsing and to navigate to the selected property page on that domain. This ensures the extension opens properties on the correct Holidu website (holidu.com, holidu.de, etc.) based on the user's current tab.
+The tabs permission is required to detect the current Holidu domain by reading the active tab's URL (line 281 in prepare.js: new URL(tabs[0].url).hostname) and to open property pages in new tabs (line 271: chrome.tabs.create). This ensures the extension opens properties on the correct Holidu website (holidu.com, holidu.de, etc.) based on the user's current browsing context.
 ```
 
 **Host Permission Justification:**
