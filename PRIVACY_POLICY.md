@@ -34,8 +34,8 @@ All data is stored locally in your browser using Chrome's storage API:
 ### Storage Permission
 Used to save property data, user preferences, and query logs locally in your browser.
 
-### ActiveTab Permission
-Required to detect your current Holidu domain and navigate to the selected property page on the correct website.
+### Tabs Permission
+Required to detect your current Holidu domain (by reading the active tab's URL) and to open property pages in new tabs. This ensures the extension opens properties on the correct Holidu website based on the user's current browsing context.
 
 ### Host Permissions
 Required to access:
