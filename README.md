@@ -2,6 +2,8 @@
 
 A Chrome extension to quickly find and test properties on Holidu with advanced filtering options.
 
+**🌐 Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)
+
 ---
 
 ## 📋 Table of Contents
@@ -32,9 +34,35 @@ Holidu Property Finder is a browser extension that helps you quickly find proper
 
 ## Installation
 
-### Step 1: Download the Extension
+### Method 1: Chrome Web Store (Recommended) ⭐
 
-#### Download from GitHub (Easy Way)
+1. **Visit the Chrome Web Store:**
+   - 🔗 [https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)
+
+2. **Install the Extension:**
+   - Click **"Add to Chrome"** button
+   - Confirm by clicking **"Add extension"** in the popup
+   - ✅ **Extension installed!** You'll see a confirmation message
+
+3. **Pin the Extension (Recommended):**
+   - Click the **puzzle icon** 🧩 in Chrome's toolbar (top-right)
+   - Find **"Holidu Property Finder"** in the list
+   - Click the **pin icon** 📌 next to it
+   - Now you can access it easily from your toolbar!
+
+**✨ Benefits:**
+- ✅ **Automatic Updates** - Get new features and bug fixes automatically
+- ✅ **No Developer Mode** - Clean installation, no manual updates needed
+- ✅ **One-Click Install** - No file downloads or folder management
+
+---
+
+### Method 2: Manual Installation (Developer Mode)
+
+For developers or when testing unreleased versions:
+
+#### Step 1: Download the Extension
+
 1. Go to the repository: **https://github.com/yusuf2407/holidu-property-finder**
 2. Click the green **"Code"** button (near the top right)
 3. Click **"Download ZIP"** from the dropdown menu
@@ -44,7 +72,7 @@ Holidu Property Finder is a browser extension that helps you quickly find proper
    - **Mac:** Double-click the ZIP file
 6. Remember where you extracted it! You'll need this folder in the next step
 
-### Step 2: Install in Chrome
+#### Step 2: Install in Chrome
 
 1. Open Google Chrome
 2. Go to `chrome://extensions/` (copy-paste this into your address bar)
@@ -55,12 +83,16 @@ Holidu Property Finder is a browser extension that helps you quickly find proper
 7. Click **"Select Folder"** or **"Open"**
 8. ✅ **Extension installed!** You should see it in your extensions list
 
-### Step 3: Pin the Extension (Recommended)
+#### Step 3: Pin the Extension (Recommended)
 
 1. Click the **puzzle icon** 🧩 in Chrome's toolbar (top-right)
-2. Find **"Property Finder"** in the list
+2. Find **"Holidu Property Finder"** in the list
 3. Click the **pin icon** 📌 next to it
 4. Now you can access it easily from your toolbar!
+
+**⚠️ Note:** Manual installations don't receive automatic updates. You'll need to download and reinstall manually for new versions.
+
+---
 
 ### VPN Requirement (Optional)
 - **For ES Search:** Connect to Holidu VPN for Elasticsearch access (439K+ properties)
@@ -688,6 +720,31 @@ ES returned 50 IDs
 
 ---
 
+## 🔄 Updates & Versioning
+
+### Automatic Updates
+
+If you installed from the Chrome Web Store, you'll receive automatic updates:
+
+- ✅ **Updates happen automatically** - Chrome checks for updates every few hours
+- ✅ **No user action required** - Updates install silently in the background
+- ✅ **Always up-to-date** - You'll get new features and bug fixes within 24 hours
+- ✅ **No notifications** - Extension reloads seamlessly with new version
+
+### Manual Update (Developer Mode Only)
+
+If you installed manually (Developer Mode):
+
+1. Download the latest version from [GitHub](https://github.com/yusuf2407/holidu-property-finder)
+2. Extract the ZIP file
+3. Go to `chrome://extensions/`
+4. Click the **"Reload"** icon on the extension card
+5. Or remove and reinstall the extension
+
+**💡 Tip:** Switch to Chrome Web Store installation to get automatic updates forever!
+
+---
+
 ## Support & Contribution
 
 ### Report Issues
@@ -713,13 +770,22 @@ See [CHANGELOG.md](CHANGELOG.md) for full implementation history with timestamps
 
 ---
 
+## Links
+
+- 🌐 **Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)
+- 📦 **GitHub Repository:** [holidu-property-finder](https://github.com/yusuf2407/holidu-property-finder)
+- 📖 **Privacy Policy:** [PRIVACY_POLICY.md](PRIVACY_POLICY.md)
+- 📝 **Changelog:** [CHANGELOG.md](CHANGELOG.md)
+
+---
+
 ## License
 
 Internal Holidu tool - Not for public distribution
 
 ---
 
-**Last Updated:** 2025-01-23  
+**Last Updated:** October 29, 2025  
 **Version:** 2.1.0  
 **Maintainer:** Holidu Tech Team
 

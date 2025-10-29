@@ -1,13 +1,25 @@
 # Chrome Web Store Submission Guide
 
-## 🔄 STATUS: READY FOR RESUBMISSION (3rd Attempt)
+## ✅ STATUS: PUBLISHED (Unlisted)
 
+**Current Version:** 2.1.0  
+**Status:** Published - Unlisted  
+**Chrome Web Store Link:** [https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)  
+**Extension ID:** `nddkflapkpfljkfnehffjfnfelmeocmf`
+
+### What "Unlisted" Means:
+- ✅ Extension is live and published
+- ✅ Anyone with the direct link can install it
+- ✅ Automatic updates work for all users
+- ❌ Does not appear in Chrome Web Store search results
+- ❌ Not publicly discoverable without the link
+
+### Submission History:
 **1st Rejection:** October 24, 2025 - Unused `scripting` permission (Violation ID: Purple Potassium)  
 **2nd Rejection:** October 27, 2025 - Unused `activeTab` permission (Violation ID: Purple Potassium)  
 **Root Cause:** Used wrong permission - need `tabs` not `activeTab` to read tab.url  
 **Fix Applied:** ✅ Changed from `activeTab` to `tabs` permission  
-**Current Version:** 2.1.0  
-**Status:** Ready to resubmit with correct permission
+**3rd Submission:** October 29, 2025 - ✅ **APPROVED & PUBLISHED**
 
 ---
 
@@ -210,19 +222,44 @@ https://raw.githubusercontent.com/yusuf2407/holidu-property-finder/main/PRIVACY_
 
 ## 🎯 After Approval
 
+### ✅ Extension is Now Published!
+
+**Chrome Web Store Link:**
+```
+https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf
+```
+
 ### Share with Team:
 
-1. Go to your Chrome Web Store Developer Dashboard
-2. Find your extension
-3. Copy the Chrome Web Store URL (looks like: `https://chrome.google.com/webstore/detail/[extension-id]`)
-4. Share this link with Holidu team members via Slack/Email
+Share this link with Holidu team members via:
+- 📧 Email
+- 💬 Slack
+- 📝 Internal documentation
+- 🔗 Confluence/Wiki
 
 ### Installation for Team Members:
 
-1. Team members with `@holidu.com` accounts visit the link
+1. Visit the Chrome Web Store link above
 2. Click **"Add to Chrome"**
-3. Extension installs automatically (no Developer Mode needed)
-4. Updates will be pushed automatically
+3. Confirm by clicking **"Add extension"**
+4. ✅ Extension installs automatically (no Developer Mode needed)
+5. 🔄 Updates will be pushed automatically within 24 hours
+
+### Visibility Settings:
+
+**Current Setting:** Unlisted
+- Anyone with the direct link can install
+- Does not appear in Chrome Web Store search
+- Perfect for internal tools you want to share with specific people
+
+**Want to change visibility?**
+1. Go to [Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+2. Select your extension
+3. Go to **Distribution** or **Privacy** tab
+4. Change visibility to:
+   - **Public**: Anyone can find and install (searchable)
+   - **Unlisted**: Only people with link can install (current) ⭐
+   - **Private**: Only specific organization/group can access
 
 ---
 
