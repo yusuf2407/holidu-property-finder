@@ -2,7 +2,7 @@
 
 A Chrome extension to quickly find and test properties on Holidu with advanced filtering options.
 
-**🌐 Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)
+**🌐 Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf) *(Private - @holidu.com only)*
 
 ---
 
@@ -36,6 +36,8 @@ Holidu Property Finder is a browser extension that helps you quickly find proper
 
 ### Method 1: Chrome Web Store (Recommended) ⭐
 
+**Requirements:** You must be logged into Chrome with your **@holidu.com** Google account.
+
 1. **Visit the Chrome Web Store:**
    - 🔗 [https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)
 
@@ -54,6 +56,7 @@ Holidu Property Finder is a browser extension that helps you quickly find proper
 - ✅ **Automatic Updates** - Get new features and bug fixes automatically
 - ✅ **No Developer Mode** - Clean installation, no manual updates needed
 - ✅ **One-Click Install** - No file downloads or folder management
+- 🔒 **Private** - Only accessible to @holidu.com team members
 
 ---
 
@@ -772,7 +775,7 @@ See [CHANGELOG.md](CHANGELOG.md) for full implementation history with timestamps
 
 ## Links
 
-- 🌐 **Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)
+- 🌐 **Chrome Web Store:** [Install Extension](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf) *(Private - @holidu.com only)*
 - 📦 **GitHub Repository:** [holidu-property-finder](https://github.com/yusuf2407/holidu-property-finder)
 - 📖 **Privacy Policy:** [PRIVACY_POLICY.md](PRIVACY_POLICY.md)
 - 📝 **Changelog:** [CHANGELOG.md](CHANGELOG.md)

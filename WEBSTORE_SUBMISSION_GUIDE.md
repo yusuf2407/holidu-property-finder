@@ -1,18 +1,18 @@
 # Chrome Web Store Submission Guide
 
-## ✅ STATUS: PUBLISHED (Unlisted)
+## ✅ STATUS: PUBLISHED (Private)
 
 **Current Version:** 2.1.0  
-**Status:** Published - Unlisted  
+**Status:** Published - Private  
 **Chrome Web Store Link:** [https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)  
 **Extension ID:** `nddkflapkpfljkfnehffjfnfelmeocmf`
 
-### What "Unlisted" Means:
+### What "Private" Means:
 - ✅ Extension is live and published
-- ✅ Anyone with the direct link can install it
-- ✅ Automatic updates work for all users
+- ✅ Only @holidu.com users can see and install it
+- ✅ Automatic updates work for all authorized users
 - ❌ Does not appear in Chrome Web Store search results
-- ❌ Not publicly discoverable without the link
+- ❌ Not accessible to anyone outside the organization
 
 ### Submission History:
 **1st Rejection:** October 24, 2025 - Unused `scripting` permission (Violation ID: Purple Potassium)  
@@ -169,6 +169,8 @@ English
 
 This ensures ONLY users with `@holidu.com` email addresses can see and install the extension.
 
+**✅ APPLIED:** This setting is now active on the published extension.
+
 #### **Privacy Tab:**
 
 **Single Purpose Description:**
@@ -247,19 +249,19 @@ Share this link with Holidu team members via:
 
 ### Visibility Settings:
 
-**Current Setting:** Unlisted
-- Anyone with the direct link can install
+**Current Setting:** Private
+- Only @holidu.com users can see and install
 - Does not appear in Chrome Web Store search
-- Perfect for internal tools you want to share with specific people
+- Perfect for internal tools restricted to your organization
 
-**Want to change visibility?**
+**Visibility Options:**
 1. Go to [Developer Dashboard](https://chrome.google.com/webstore/devconsole)
 2. Select your extension
-3. Go to **Distribution** or **Privacy** tab
-4. Change visibility to:
+3. Go to **Distribution** tab
+4. Available visibility options:
    - **Public**: Anyone can find and install (searchable)
-   - **Unlisted**: Only people with link can install (current) ⭐
-   - **Private**: Only specific organization/group can access
+   - **Unlisted**: Only people with link can install
+   - **Private**: Only specific organization/group can access (current) ⭐
 
 ---
 
