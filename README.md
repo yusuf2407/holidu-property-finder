@@ -1,4 +1,4 @@
-# 🏠 Holidu Property Finder
+# 🏡 Holidu Property Finder 🏘️
 
 A Chrome extension to quickly find and test properties on Holidu with advanced filtering options.
 
