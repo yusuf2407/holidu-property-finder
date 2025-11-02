@@ -1,0 +1,254 @@
+# Holidu Property Finder - Cursor Rules
+
+## Project Overview
+This is a vanilla JavaScript Chrome Extension (Manifest V3) for finding properties on Holidu.
+NO build tools, NO frameworks, NO TypeScript - pure browser JavaScript only.
+
+## Core Technologies
+- Vanilla JavaScript (ES6+)
+- Chrome Extension Manifest V3 APIs
+- HTML5 + CSS3
+- Elasticsearch (via Kibana proxy)
+- Holidu REST APIs
+- Static JSON databases
+
+## Code Style & Conventions
+
+### JavaScript
+- Use modern ES6+ syntax (async/await, arrow functions, destructuring)
+- Use `const` by default, `let` only when reassignment needed, NEVER `var`
+- Use template literals for string interpolation
+- Prefer async/await over raw Promises
+- Always handle errors with try-catch in async functions
+- Use optional chaining (`?.`) and nullish coalescing (`??`) for safe property access
+
+### Naming Conventions
+- **Variables/Functions**: camelCase (e.g., `propertyId`, `searchProperties`)
+- **Constants**: UPPER_SNAKE_CASE (e.g., `ES_TIMEOUT_MS`, `KIBANA_PROXY`)
+- **Global functions**: Attach to `window` object when needed (e.g., `window.esSearch`)
+- **Files**: camelCase for JS, lowercase for JSON (e.g., `holiduHelper.js`, `properties.json`)
+
+### Comments & Documentation
+- Use emoji prefixes in console logs for visual clarity:
+  - 🔍 = Searching/Checking
+  - ✅ = Success
+  - ❌ = Error/Failure
+  - ⚠️ = Warning
+  - 💾 = Saving data
+  - 🚫 = Quarantine/Blocked
+  - 📂 = Loading data
+  - 📊 = Statistics
+  - ⏭️ = Skipping
+  - 🔄 = Retrying
+- Add clear inline comments for complex logic
+- Document function parameters and return values for public APIs
+
+## Chrome Extension Specific
+
+### Manifest V3 Rules
+- Always use `chrome.storage.local` for persistence (NOT localStorage)
+- Respect host_permissions defined in manifest.json
+- Use chrome.tabs API for navigation
+- NO background service workers in this project (background: {} is empty)
+- All logic runs in popup context
+
+### Storage Patterns
+```javascript
+// Reading from chrome.storage
+chrome.storage.local.get(['key'], (result) => {
+  const data = result.key || defaultValue;
+});
+
+// Writing to chrome.storage
+chrome.storage.local.set({ key: value }, () => {
+  console.log('✅ Data saved');
+});
+```
+
+### Tab Navigation
+```javascript
+chrome.tabs.update(tabId, { url: targetUrl });
+// OR for new tab:
+chrome.tabs.create({ url: targetUrl });
+```
+
+## Elasticsearch Patterns
+
+### Query Structure
+- Use Kibana proxy: `KIBANA_PROXY + encodeURIComponent(index) + '/_search&method=POST'`
+- Always include timeout (5 seconds): Use AbortController
+- Cache ES down status for 60 seconds to avoid repeated timeouts
+- Log queries for debugging: `console.log("ES query:", JSON.stringify(body, null, 2))`
+
+### ES Response Handling
+```javascript
+const hits = data?.hits?.hits || [];
+const ids = hits.map(h => h?._source?.id).filter(x => x != null);
+```
+
+### Timeout Pattern
+```javascript
+const controller = new AbortController();
+const timeoutId = setTimeout(() => controller.abort(), ES_TIMEOUT_MS);
+try {
+  const res = await fetch(url, { signal: controller.signal });
+  clearTimeout(timeoutId);
+} catch (error) {
+  clearTimeout(timeoutId);
+  if (error.name === 'AbortError') {
+    // Handle timeout
+  }
+}
+```
+
+## Database Architecture
+
+### Three-Layer System
+1. **Elasticsearch** (439K+ properties) - Requires VPN, primary search
+2. **Static JSON** (`properties.json`) - 1,802 properties, fallback/offline
+3. **Quarantine** (`unavailable_properties.json`) - Track unavailable properties
+
+### Property Object Structure
+```javascript
+{
+  id: "12345678",
+  paymentType: "ADYEN" | "PCI_CC" | "TOMAS" | etc,
+  hasBreakfast: boolean,
+  hasDeposit: boolean,
+  isTestProperty: boolean,
+  provider: "PROVIDER_NAME",
+  // ... other criteria
+}
+```
+
+### Quarantine System
+- Auto-quarantine properties with no availability
+- Skip quarantined properties in future searches
+- Log quarantine actions: `🚫 Property X quarantining`
+- Persist quarantine to chrome.storage.local
+
+## Search Flow Pattern
+
+### Priority Order
+1. **ES Search** (if criteria requires ES or VPN available)
+   - Provider search, multi-unit, discounts → MUST use ES
+   - Simple searches → Can skip ES, use static DB
+2. **Live API Validation** (validate ES results)
+3. **Static DB Fallback** (if ES fails or times out)
+
+### Retry Logic
+- Maximum 5 attempts per search
+- Skip quarantined properties
+- Log each attempt: `🔍 Attempt X/5: Checking property Y...`
+- Move unavailable properties to quarantine
+
+## Error Handling
+
+### Network Errors
+- Always wrap fetch calls in try-catch
+- Provide fallback behavior (ES → Static DB)
+- Log errors with context: `❌ ES timeout - VPN might be off`
+
+### API Errors
+- Check response.ok before parsing JSON
+- Return structured error objects: `{ ids: [], hits: [], error: 'message' }`
+- Don't throw errors up, handle gracefully
+
+### User-Facing Errors
+- Show "No property found" message instead of technical errors
+- Reset button state after errors
+- Never leave UI in "Searching..." state permanently
+
+## Performance Rules
+
+### Caching
+- Cache ES down status for 60 seconds (avoid repeated timeouts)
+- Merge saved properties on extension load (not per search)
+- Use in-memory property arrays after initial load
+
+### Optimization
+- Limit ES results to 50 (size: 50)
+- Use optional fields in JSON (don't store null/false unnecessarily)
+- Batch chrome.storage operations where possible
+
+## File Structure Rules
+
+### Main Files
+- `popup.js` - UI logic, event handlers ONLY
+- `search.js` - Core search logic (ES + Live API + DB)
+- `prepare.js` - URL construction, date handling
+- `holiduHelper.js` - Holidu API client
+- `esClient.js` - Elasticsearch client
+- `properties.json` - Main static database
+- `unavailable_properties.json` - Quarantine database
+
+### Separation of Concerns
+- NO API calls in popup.js (use helper modules)
+- NO DOM manipulation in search.js (return results to popup)
+- Keep helpers pure/stateless where possible
+
+## Testing & Debugging
+
+### Console Logging
+- Always log ES queries: `console.log("ES query:", query)`
+- Log search attempts: `🔍 Attempting ES search first...`
+- Log property validation: `✅ Property X has availability`
+- Log database operations: `💾 Saving property X...`
+
+### Debugging Tools
+- Provide maintenance scripts in `maintenance-scripts/`
+- Export/import functionality for databases
+- Query log viewer in popup UI
+- Developer console snippets in README
+
+## Commit Guidelines (Auto-commit Enabled)
+- ALL code changes should be committed immediately after making them
+- Don't wait or batch changes - commit as soon as edits are made
+- Use clear, descriptive commit messages
+- Reference relevant criteria or feature in message
+
+## Anti-Patterns to AVOID
+
+❌ **Don't use npm/build tools** - This is a pure browser extension
+❌ **Don't use TypeScript** - Plain JavaScript only
+❌ **Don't use frameworks** - No React, Vue, Angular
+❌ **Don't use localStorage** - Use chrome.storage.local instead
+❌ **Don't use synchronous chrome.storage.sync** - Use local storage only
+❌ **Don't throw unhandled errors** - Always gracefully handle failures
+❌ **Don't assume ES is available** - Always have fallback
+❌ **Don't make API calls without retry logic** - Properties may be unavailable
+❌ **Don't forget to clear timeouts** - Memory leaks
+❌ **Don't block on ES when criteria is simple** - Use static DB directly
+
+## Before Making ANY Changes
+
+1. ✅ Review these rules
+2. ✅ Check which file(s) should be modified based on separation of concerns
+3. ✅ Ensure code follows vanilla JS patterns (no build tools needed)
+4. ✅ Add appropriate console logging with emoji prefixes
+5. ✅ Handle errors gracefully with fallbacks
+6. ✅ Test ES timeout scenarios (VPN on/off)
+7. ✅ Update README if adding new features
+8. ✅ Commit changes immediately after making them
+
+## Quick Reference
+
+### Check before modifying:
+- **UI changes?** → `popup.html`, `popup.js`, `index.css`
+- **Search logic?** → `search.js`
+- **ES queries?** → `esClient.js`
+- **API calls?** → `holiduHelper.js`
+- **URL building?** → `prepare.js`
+- **Database changes?** → `properties.json`, maintenance scripts
+- **Extension config?** → `manifest.json`
+
+### Common Tasks:
+- **Add filter** → Update `popup.html`, `popup.js`, `search.js`
+- **Fix ES query** → Update `esClient.js` and `search.js`
+- **Add property field** → Update property objects in `properties.json`
+- **Change timeout** → Update constants: `ES_TIMEOUT_MS`, `ES_DOWN_CACHE_MS`
+
+---
+
+**Remember: This is a lightweight, zero-build Chrome extension. Keep it simple, vanilla, and fast! 🚀**
+
