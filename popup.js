@@ -16,12 +16,58 @@ window.addEventListener('load', function() {
     window.scrollTo(0, 0);
   }, 0);
   
+  // Fix icon paths for webstore compatibility
+  fixIconPaths();
+  
   // Initialize all toggles as disabled
   initializeToggles();
   
   // Make entire checkbox/radio elements clickable
   makeElementsClickable();
 });
+
+// Fix icon paths using chrome.runtime.getURL() for webstore compatibility
+function fixIconPaths() {
+  try {
+    // Fix logo image
+    const logoImg = document.querySelector('.logo-horizontal');
+    if (logoImg) {
+      logoImg.src = chrome.runtime.getURL('Holidu_Horizontal Logo_White_RGB.png');
+      logoImg.onerror = function() {
+        console.error('Failed to load logo image:', this.src);
+      };
+    }
+    
+    // Fix house icons in header subtitle (first and second img tags)
+    const headerSubtitle = document.querySelector('.header-subtitle');
+    if (headerSubtitle) {
+      const houseIcons = headerSubtitle.querySelectorAll('img');
+      if (houseIcons.length >= 1) {
+        houseIcons[0].src = chrome.runtime.getURL('house-icon.png');
+        houseIcons[0].onerror = function() {
+          console.error('Failed to load house-icon.png:', this.src);
+        };
+      }
+      if (houseIcons.length >= 2) {
+        houseIcons[1].src = chrome.runtime.getURL('houses-icon.png');
+        houseIcons[1].onerror = function() {
+          console.error('Failed to load houses-icon.png:', this.src);
+        };
+      }
+    }
+    
+    // Fix warning icon
+    const warningIcon = document.querySelector('.warning-icon-img');
+    if (warningIcon) {
+      warningIcon.src = chrome.runtime.getURL('pngwing.com.png');
+      warningIcon.onerror = function() {
+        console.error('Failed to load warning icon:', this.src);
+      };
+    }
+  } catch (error) {
+    console.error('Error fixing icon paths:', error);
+  }
+}
 
 // Function to make entire elements clickable
 function makeElementsClickable() {
@@ -202,7 +248,13 @@ btnApartmentId.addEventListener("click", async (event) => {
     await findTestProperty(propertyId);
   } catch (error) {
     console.error('Error in findTestProperty:', error);
-    alert('An error occurred. Please try again.');
+    console.error('Error stack:', error.stack);
+    console.error('Error details:', {
+      message: error.message,
+      name: error.name,
+      propertyId: txtApartmentId.value || null
+    });
+    alert('An error occurred. Please try again. Check console for details.');
   } finally {
     // Remove loading state
     setButtonLoading(false);
