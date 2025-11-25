@@ -61,7 +61,22 @@ Your extension is now prepared for Chrome Web Store publication!
    - `manifest.json` updated with all icon sizes
 
 2. **Distribution Package** (✅ Complete):
-   - `holidu-property-finder-v2.1.1.zip` - Ready to upload (ES8 migration)
+   - `holidu-property-finder-v2.1.1.zip` - Ready to upload
+   
+### Version 2.1.1 Release Notes
+
+**What's New:**
+- ✅ **Webstore Compatibility Fixes**: Fixed icon loading issues when installed from Chrome Web Store
+- ✅ **Error Handling Improvements**: Enhanced error handling for tab URL detection and DOM element access
+- ✅ **UI Improvements**: Converted parent structure options to single-select radio buttons for better UX
+- ✅ **Label Updates**: Updated multi-unit filter labels to "Without Parent Structure" and "With Parent Structure"
+- ✅ **ES8 Migration**: Migrated Elasticsearch queries from ES7 to ES8 endpoint
+
+**Technical Changes:**
+- Icons now use `chrome.runtime.getURL()` for proper webstore compatibility
+- Added null checks for DOM elements to prevent crashes
+- Improved error logging for debugging
+- Parent structure filter now uses radio buttons (mutually exclusive selection)
 
 3. **Promotional Image** (✅ Complete):
    - `promo-tile-440x280.png` - Small promotional tile
