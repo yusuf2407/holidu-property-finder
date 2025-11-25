@@ -2,7 +2,7 @@
 
 ## ✅ STATUS: PUBLISHED (Private)
 
-**Current Version:** 2.1.0  
+**Current Version:** 2.1.1  
 **Status:** Published - Private  
 **Chrome Web Store Link:** [https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf](https://chromewebstore.google.com/detail/nddkflapkpfljkfnehffjfnfelmeocmf)  
 **Extension ID:** `nddkflapkpfljkfnehffjfnfelmeocmf`
@@ -61,7 +61,7 @@ Your extension is now prepared for Chrome Web Store publication!
    - `manifest.json` updated with all icon sizes
 
 2. **Distribution Package** (✅ Complete):
-   - `holidu-property-finder-v2.1.0.zip` - Ready to upload (updated with fix)
+   - `holidu-property-finder-v2.1.1.zip` - Ready to upload (ES8 migration)
 
 3. **Promotional Image** (✅ Complete):
    - `promo-tile-440x280.png` - Small promotional tile
@@ -78,9 +78,10 @@ Your extension is now prepared for Chrome Web Store publication!
 
 ### Step 2: Upload ZIP File
 1. Click **"Upload new package"** (for resubmission)
-2. Select: `holidu-property-finder-v2.1.0.zip`
+2. Select: `holidu-property-finder-v2.1.1.zip`
 3. Wait for upload and validation to complete
 4. ✅ Verify that permissions show only `storage` and `tabs` (correct!)
+5. ✅ Verify version shows 2.1.1
 
 ### Step 3: Fill in Store Listing Information
 
