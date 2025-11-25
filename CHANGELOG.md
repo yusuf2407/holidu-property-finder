@@ -84,7 +84,7 @@ All notable changes and feature implementations are documented here with timesta
 
 ### Changed
 - **Elasticsearch Environment**: Changed from DEV (`holidu.io`) to PROD (`holidu.cloud`)
-  - Updated `esClient.js` to use `https://kibana-search-7.holidu.cloud`
+  - Updated `esClient.js` to use `https://kibana-search-8.holidu.cloud`
   - Updated `manifest.json` host permissions
   - **Impact**: Extension now queries PROD data instead of DEV data
 

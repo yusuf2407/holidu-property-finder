@@ -1,5 +1,5 @@
 // Minimal ES client using Kibana proxy. Requires VPN.
-const KIBANA_PROXY = "https://kibana-search-7.holidu.cloud/api/console/proxy?path=";
+const KIBANA_PROXY = "https://kibana-search-8.holidu.cloud/api/console/proxy?path=";
 const ES_TIMEOUT_MS = 5000; // 5 second timeout
 
 // Global flag to track if ES is down (to avoid repeated timeout attempts)

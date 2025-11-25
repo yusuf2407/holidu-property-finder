@@ -40,7 +40,7 @@ Required to detect your current Holidu domain (by reading the active tab's URL) 
 ### Host Permissions
 Required to access:
 - **Holidu Internal APIs** (api.holidu.com) - To fetch property data
-- **Elasticsearch Service** (kibana-search-7.holidu.cloud) - To search properties
+- **Elasticsearch Service** (kibana-search-8.holidu.cloud) - To search properties
 - **Holidu Brand Domains** (holidu.com, holidu.de, holidu.fr, etc.) - To navigate to property pages
 
 ## Remote Code
@@ -51,7 +51,7 @@ The extension fetches property data from Holidu's internal APIs and Elasticsearc
 
 This extension connects only to Holidu's internal services:
 - Holidu API (api.holidu.com)
-- Elasticsearch (kibana-search-7.holidu.cloud)
+- Elasticsearch (kibana-search-8.holidu.cloud)
 - Holidu brand websites
 
 **No third-party services or analytics tools are used.**

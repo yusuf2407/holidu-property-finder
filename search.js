@@ -338,7 +338,7 @@ async function getMultiUnitPropertyIds() {
       "size": 20
     };
 
-    const response = await fetch("https://kibana-search-7.holidu.io/api/console/proxy?path=detailed-apartments/_search&method=POST", {
+    const response = await fetch("https://kibana-search-8.holidu.cloud/api/console/proxy?path=detailed-apartments/_search&method=POST", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

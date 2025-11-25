@@ -8,7 +8,7 @@
   "permissions": ["storage", "tabs"],
   "host_permissions": [
     "https://api.holidu.com/*",
-    "https://kibana-search-7.holidu.cloud/*",
+    "https://kibana-search-8.holidu.cloud/*",
     "https://holidu-client-develop.holidu.io/*",
     "https://holidu-client-test.holidu.io/*",
     "https://stage.holidu.cloud/*",

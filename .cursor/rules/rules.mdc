@@ -1,3 +1,7 @@
+---
+globs: *.js
+alwaysApply: false
+---
 # Holidu Property Finder - Cursor Rules
 
 ## Project Overview

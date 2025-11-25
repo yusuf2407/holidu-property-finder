@@ -192,7 +192,7 @@ The tabs permission is required to detect the current Holidu domain by reading t
 
 **Host Permission Justification:**
 ```
-Host permissions are required to access Holidu's internal APIs (api.holidu.com), Elasticsearch service (kibana-search-7.holidu.cloud), and all Holidu brand domains (holidu.com, holidu.de, holidu.fr, etc.) to fetch property data, validate availability, and navigate users to the correct property pages across different Holidu websites.
+Host permissions are required to access Holidu's internal APIs (api.holidu.com), Elasticsearch service (kibana-search-8.holidu.cloud), and all Holidu brand domains (holidu.com, holidu.de, holidu.fr, etc.) to fetch property data, validate availability, and navigate users to the correct property pages across different Holidu websites.
 ```
 
 **Remote Code Usage:**
