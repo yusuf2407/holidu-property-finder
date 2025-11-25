@@ -278,7 +278,23 @@ function constructURL(propertyId, checkin, checkout, property) {
 // Get current domain
 let currentHostname = null;
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    currentHostname = new URL(tabs[0].url).hostname;
+    try {
+        if (tabs && tabs.length > 0 && tabs[0] && tabs[0].url) {
+            // Check if URL is valid (not chrome://, about:, etc.)
+            if (tabs[0].url.startsWith('http://') || tabs[0].url.startsWith('https://')) {
+                currentHostname = new URL(tabs[0].url).hostname;
+            } else {
+                console.log('⚠️  Current tab URL is not a valid HTTP(S) URL:', tabs[0].url);
+                currentHostname = null;
+            }
+        } else {
+            console.log('⚠️  No active tab found or tab URL is undefined');
+            currentHostname = null;
+        }
+    } catch (error) {
+        console.error('❌ Error getting current hostname:', error);
+        currentHostname = null;
+    }
 });
 
 function getHostname(){

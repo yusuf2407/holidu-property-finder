@@ -48,107 +48,117 @@ function getCriteria(){
     let criteria = {};
 
     let cbHasIncludedCosts = document.getElementById('hasIncludedCosts');
-    if (cbHasIncludedCosts.checked) {
-      let flag = document.getElementById('hasIncludedCosts_flag').dataset.state;
+    if (cbHasIncludedCosts && cbHasIncludedCosts.checked) {
+      let flagEl = document.getElementById('hasIncludedCosts_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasIncludedCosts = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasIncludedCosts_negative = true;
       }
     }
 
     let cbHasMandatoryCosts = document.getElementById('hasMandatoryCosts');
-    if (cbHasMandatoryCosts.checked) {
-      let flag = document.getElementById('hasMandatoryCosts_flag').dataset.state;
+    if (cbHasMandatoryCosts && cbHasMandatoryCosts.checked) {
+      let flagEl = document.getElementById('hasMandatoryCosts_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasMandatoryCosts = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasMandatoryCosts_negative = true;
       }
     }
 
     let cbHasSelectableCosts = document.getElementById('hasSelectableCosts');
-    if (cbHasSelectableCosts.checked) {
-      let flag = document.getElementById('hasSelectableCosts_flag').dataset.state;
+    if (cbHasSelectableCosts && cbHasSelectableCosts.checked) {
+      let flagEl = document.getElementById('hasSelectableCosts_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasSelectableCosts = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasSelectableCosts_negative = true;
       }
     }
 
     let cbHasFreeSelectableCosts = document.getElementById('hasFreeSelectableCosts');
-    if (cbHasFreeSelectableCosts.checked) {
-      let flag = document.getElementById('hasFreeSelectableCosts_flag').dataset.state;
+    if (cbHasFreeSelectableCosts && cbHasFreeSelectableCosts.checked) {
+      let flagEl = document.getElementById('hasFreeSelectableCosts_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasFreeSelectableCosts = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasFreeSelectableCosts_negative = true;
       }
     }
 
     let cbHasMandatoryOnsiteCosts = document.getElementById('hasMandatoryOnsiteCosts');
-    if (cbHasMandatoryOnsiteCosts.checked) {
-      let flag = document.getElementById('hasMandatoryOnsiteCosts_flag').dataset.state;
+    if (cbHasMandatoryOnsiteCosts && cbHasMandatoryOnsiteCosts.checked) {
+      let flagEl = document.getElementById('hasMandatoryOnsiteCosts_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasMandatoryOnsiteCosts = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasMandatoryOnsiteCosts_negative = true;
       }
     }
 
     let cbHasOnsiteCosts = document.getElementById('hasOnsiteCosts');
-    if (cbHasOnsiteCosts.checked) {
-      let flag = document.getElementById('hasOnsiteCosts_flag').dataset.state;
+    if (cbHasOnsiteCosts && cbHasOnsiteCosts.checked) {
+      let flagEl = document.getElementById('hasOnsiteCosts_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasOnsiteCosts = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasOnsiteCosts_negative = true;
       }
     }
 
     let cbHasDeposit = document.getElementById('hasDeposit');
-    if (cbHasDeposit.checked) {
-      let flag = document.getElementById('hasDeposit_flag').dataset.state;
+    if (cbHasDeposit && cbHasDeposit.checked) {
+      let flagEl = document.getElementById('hasDeposit_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasDeposit = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasDeposit_negative = true;
       }
     }
 
     let cbHasDepositOnsite = document.getElementById('hasDepositOnsite');
-    if (cbHasDepositOnsite.checked) {
-      let flag = document.getElementById('hasDepositOnsite_flag').dataset.state;
+    if (cbHasDepositOnsite && cbHasDepositOnsite.checked) {
+      let flagEl = document.getElementById('hasDepositOnsite_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasDepositOnsite = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasDepositOnsite_negative = true;
       }
     }
 
     let cbHasTouristTax = document.getElementById('hasTouristTax');
-    if (cbHasTouristTax.checked) {
-      let flag = document.getElementById('hasTouristTax_flag').dataset.state;
+    if (cbHasTouristTax && cbHasTouristTax.checked) {
+      let flagEl = document.getElementById('hasTouristTax_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasTouristTax = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasTouristTax_negative = true;
       }
     }
 
     let cbHasTouristTaxOnSite = document.getElementById('hasTouristTaxOnSite');
-    if (cbHasTouristTaxOnSite.checked) {
-      let flag = document.getElementById('hasTouristTaxOnSite_flag').dataset.state;
+    if (cbHasTouristTaxOnSite && cbHasTouristTaxOnSite.checked) {
+      let flagEl = document.getElementById('hasTouristTaxOnSite_flag');
+      let flag = flagEl?.dataset?.state;
       if (flag === 'positive') {
         criteria.hasTouristTaxOnSite = true;
-      } else {
+      } else if (flag === 'negative') {
         criteria.hasTouristTaxOnSite_negative = true;
       }
     }
 
     let cbHasFreeCancellation = document.getElementById('hasFreeCancellation');
-    if (cbHasFreeCancellation.checked) criteria.hasFreeCancellation = true;
+    if (cbHasFreeCancellation && cbHasFreeCancellation.checked) criteria.hasFreeCancellation = true;
 
     let selCancellationPolicy = document.getElementById('cancellationPolicy');
     if (selCancellationPolicy && selCancellationPolicy.value) {
@@ -257,16 +267,18 @@ function getCriteria(){
     if (selPaymentType) criteria.paymentType = selPaymentType;
 
     let txtProvider = document.getElementById('provider');
-    if (txtProvider.value !== "") {
+    if (txtProvider && txtProvider.value !== "") {
       criteria.provider = txtProvider.value;
       
       // Check if the entered value exactly matches a datalist option
       const datalist = document.getElementById('providers');
-      const options = Array.from(datalist.options).map(opt => opt.value);
-      const isExactMatch = options.includes(txtProvider.value);
-      
-      // Only use partial matching if it's NOT an exact match
-      criteria.providerPartialMatch = !isExactMatch;
+      if (datalist) {
+        const options = Array.from(datalist.options).map(opt => opt.value);
+        const isExactMatch = options.includes(txtProvider.value);
+        
+        // Only use partial matching if it's NOT an exact match
+        criteria.providerPartialMatch = !isExactMatch;
+      }
     }
 
     // Multi-units filters
