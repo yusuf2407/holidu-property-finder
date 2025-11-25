@@ -140,7 +140,7 @@ function makeElementsClickable() {
 // Function to initialize toggle states based on checkboxes
 function initializeToggles() {
   // Get all checkboxes that have associated flag toggles
-  const checkboxesWithToggles = document.querySelectorAll('input[type="checkbox"][id$="Costs"], input[type="checkbox"][id*="TouristTax"], input[type="checkbox"][id*="Deposit"], input[type="checkbox"][id="supportsParentUnitStructure"]');
+  const checkboxesWithToggles = document.querySelectorAll('input[type="checkbox"][id$="Costs"], input[type="checkbox"][id*="TouristTax"], input[type="checkbox"][id*="Deposit"]');
   
   checkboxesWithToggles.forEach(checkbox => {
     const toggleButton = document.getElementById(checkbox.id + '_flag');

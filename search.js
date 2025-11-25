@@ -281,15 +281,14 @@ function getCriteria(){
       }
     }
 
-    // Multi-units filters
-    let cbIsMultiUnit = document.getElementById('isMultiUnit');
-    if (cbIsMultiUnit?.checked) {
-      criteria.isMultiUnit = true;
-    }
-
-    let cbSupportsParentUnitStructure = document.getElementById('supportsParentUnitStructure');
-    if (cbSupportsParentUnitStructure?.checked) {
+    // Multi-units filters - now using radio buttons (single select)
+    const parentStructureRadio = document.querySelector('input[name="parentStructure"]:checked');
+    if (parentStructureRadio) {
+      if (parentStructureRadio.value === 'without') {
+        criteria.isMultiUnit = true;
+      } else if (parentStructureRadio.value === 'with') {
         criteria.supportsParentUnitStructure = true;
+      }
     }
 
     // Meal options
